@@ -8,7 +8,7 @@ import 'package:flutter_hrlweibo/public.dart';
 void main() {
   runApp(new MyApp());
   if (Platform.isAndroid) {
-      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
       systemNavigationBarColor: Color(0xffffffff),
       systemNavigationBarIconBrightness: Brightness.dark,
       systemNavigationBarDividerColor: Color(0xffffffff),
@@ -16,9 +16,8 @@ void main() {
       statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.light,
     );
-     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
-
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
 
     return Container(
       child: MaterialApp(
-          title: "HRL微博",
+          title: "世游会",
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: Colors.white),
           onGenerateRoute: Routes.router.generator,

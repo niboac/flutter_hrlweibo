@@ -1,18 +1,22 @@
 import 'WeiBoModel.dart';
 
-
-
 class FindHomeModel {
   List<Findkind> findkind;
   List<Findhottop> findhottop;
   Findhotcenter findhotcenter;
   Findtopic findtopic;
-   List<WeiBoModel> findhot;
+  List<WeiBoModel> findhot;
   List<WeiBoModel> findlocal;
   List<WeiBoModel> findsupertopic;
 
-
-  FindHomeModel({this.findkind, this.findhottop, this.findhotcenter, this.findtopic, this.findhot, this.findlocal,this.findsupertopic});
+  FindHomeModel(
+      {this.findkind,
+      this.findhottop,
+      this.findhotcenter,
+      this.findtopic,
+      this.findhot,
+      this.findlocal,
+      this.findsupertopic});
 
   FindHomeModel.fromJson(Map<String, dynamic> json) {
     if (json['findkind'] != null) {
@@ -55,27 +59,14 @@ class FindHomeModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.findkind != null) {
-      data['findkind'] = this.findkind.map((v) => v.toJson()).toList();
-    }
-    if (this.findhottop != null) {
-      data['findhottop'] = this.findhottop.map((v) => v.toJson()).toList();
-    }
-    if (this.findhotcenter != null) {
-      data['findhotcenter'] = this.findhotcenter.toJson();
-    }
-    if (this.findtopic != null) {
-      data['findtopic'] = this.findtopic.toJson();
-    }
-    if (this.findhot != null) {
-      data['findhot'] = this.findhot.map((v) => v.toJson()).toList();
-    }
-    if (this.findlocal != null) {
-      data['findlocal'] = this.findlocal.map((v) => v.toJson()).toList();
-    }
-    if (this.findsupertopic != null) {
-      data['findsupertopic'] = this.findsupertopic.map((v) => v.toJson()).toList();
-    }
+    data['findkind'] = this.findkind.map((v) => v.toJson()).toList();
+    data['findhottop'] = this.findhottop.map((v) => v.toJson()).toList();
+    data['findhotcenter'] = this.findhotcenter.toJson();
+    data['findtopic'] = this.findtopic.toJson();
+    data['findhot'] = this.findhot.map((v) => v.toJson()).toList();
+    data['findlocal'] = this.findlocal.map((v) => v.toJson()).toList();
+    data['findsupertopic'] =
+        this.findsupertopic.map((v) => v.toJson()).toList();
     return data;
   }
 }
@@ -85,7 +76,7 @@ class Findkind {
   String name;
   String img;
 
-  Findkind({this.id, this.name, this.img});
+  Findkind({this.id = 0, this.name = '', this.img = ''});
 
   Findkind.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -114,13 +105,13 @@ class Findhottop {
 
   Findhottop(
       {this.hotid,
-        this.hotdesc,
-        this.hottype,
-        this.hotread,
-        this.hotattitude,
-        this.hotdiscuss,
-        this.hothost,
-        this.recommendcoverimg});
+      this.hotdesc,
+      this.hottype,
+      this.hotread,
+      this.hotattitude,
+      this.hotdiscuss,
+      this.hothost,
+      this.recommendcoverimg});
 
   Findhottop.fromJson(Map<String, dynamic> json) {
     hotid = json['hotid'];
@@ -276,14 +267,14 @@ class Topic1 {
 
   Topic1(
       {this.topicid,
-        this.topictype,
-        this.topicdesc,
-        this.topicread,
-        this.topicdiscuss,
-        this.topichost,
-        this.topicattitude,
-        this.topicimg,
-        this.topicintro});
+      this.topictype,
+      this.topicdesc,
+      this.topicread,
+      this.topicdiscuss,
+      this.topichost,
+      this.topicattitude,
+      this.topicimg,
+      this.topicintro});
 
   Topic1.fromJson(Map<String, dynamic> json) {
     topicid = json['topicid'];
@@ -294,7 +285,7 @@ class Topic1 {
     topichost = json['topichost'];
     topicattitude = json['topicattitude'];
     topicimg = json['topicimg'];
-    topicintro= json['topicintro'];
+    topicintro = json['topicintro'];
   }
 
   Map<String, dynamic> toJson() {

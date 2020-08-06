@@ -1,5 +1,4 @@
-
- class VideoModel {
+class VideoModel {
   int id;
   String coverimg;
   int videotime;
@@ -16,26 +15,26 @@
   int zannum;
   String videourl;
   int userfancount;
-   String userdesc;
+  String userdesc;
 
   VideoModel(
       {this.id,
-        this.coverimg,
-        this.videotime,
-        this.playnum,
-        this.userid,
-        this.tag,
-        this.recommengstr,
-        this.type,
-        this.introduce,
-        this.createtime,
-         this.username,
-        this.userheadurl,
-        this.userisvertify,
-        this.zannum,
-        this.videourl,
-        this.userfancount,
-        this.userdesc});
+      this.coverimg,
+      this.videotime,
+      this.playnum,
+      this.userid,
+      this.tag,
+      this.recommengstr,
+      this.type,
+      this.introduce,
+      this.createtime,
+      this.username,
+      this.userheadurl,
+      this.userisvertify,
+      this.zannum,
+      this.videourl,
+      this.userfancount,
+      this.userdesc});
 
   VideoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

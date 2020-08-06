@@ -210,13 +210,7 @@ class _RetWeetPageState extends State<RetWeetPage> {
                     new Container(
                         margin: EdgeInsets.only(top: 5.0),
                         width: MediaQuery.of(context).size.width * 0.6,
-                        child:
-                            /* Text('' + widget.mModel.content,
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis),
-                    )*/
-                            ParsedText(
+                        child: ParsedText(
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           text: widget.mModel.content,
@@ -236,10 +230,6 @@ class _RetWeetPageState extends State<RetWeetPage> {
                                   Match match = customRegExp.firstMatch(str);
                                   map['display'] = match.group(1);
                                   map['value'] = match.group(2);
-                                  print("正则:" +
-                                      match.group(1) +
-                                      "---" +
-                                      match.group(2));
                                   return map;
                                 },
                                 onTap: (url) {
@@ -272,12 +262,6 @@ class _RetWeetPageState extends State<RetWeetPage> {
                                 renderText: ({String str, String pattern}) {
                                   Map<String, String> map =
                                       Map<String, String>();
-                                  //  RegExp customRegExp = RegExp(pattern);
-                                  //#fskljflsk:12#
-                                  // Match match = customRegExp.firstMatch(str);
-
-                                  /*  String idStr =str.substring(str.indexOf(";"),
-                     (str.lastIndexOf("#")-1));*/
 
                                   String idStr = str.substring(
                                       str.indexOf(":") + 1,
@@ -288,7 +272,6 @@ class _RetWeetPageState extends State<RetWeetPage> {
                                       .replaceAll(":" + idStr, "");
                                   map['display'] = showStr;
                                   map['value'] = idStr;
-                                  //   print("正则:"+str+"---"+idStr+"--"+startIndex.toString()+"--"+str.lastIndexOf("#").toString());
 
                                   return map;
                                 },
@@ -321,7 +304,6 @@ class _RetWeetPageState extends State<RetWeetPage> {
                               ),
                               renderText: ({String str, String pattern}) {
                                 Map<String, String> map = Map<String, String>();
-                                print("表情的正则:" + str);
                                 String mEmoji2 = "";
                                 try {
                                   String mEmoji = str.replaceAll(
@@ -338,8 +320,6 @@ class _RetWeetPageState extends State<RetWeetPage> {
                             ),
                             MatchText(
                                 pattern: '全文',
-                                //       pattern: r"\B#+([\w]+)\B#",
-                                //   pattern: r"\[(#[^:]+):([^#]+)\]",
                                 style: TextStyle(
                                   color: Color(0xff5B778D),
                                   fontSize: 15,
@@ -390,8 +370,6 @@ class _RetWeetPageState extends State<RetWeetPage> {
             color: Color(0xffF9F9F9),
             padding: EdgeInsets.only(left: 15, right: 5, top: 10, bottom: 10),
             child: Row(
-              /* mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,*/
               children: <Widget>[
                 new Expanded(
                   child: InkWell(

@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
- import 'package:flutter_hrlweibo/constant/constant.dart';
+import 'package:flutter_hrlweibo/constant/constant.dart';
 import 'package:video_player/video_player.dart';
-
-
-
 
 class VideoWidget extends StatefulWidget {
   final String url;
   final String previewImgUrl; //预览图片的地址
-   final bool showProgressText; //是否显示进度文本
+  final bool showProgressText; //是否显示进度文本
   VideoWidget(this.url,
-      {Key key,
-      this.previewImgUrl,
-       this.showProgressText = true})
+      {Key key, this.previewImgUrl, this.showProgressText = true})
       : super(key: key);
 
   _VideoWidgetState state;
@@ -38,7 +33,6 @@ class _VideoWidgetState extends State<VideoWidget> {
       if (mounted) {
         setState(() {});
       }
-
     };
   }
 
@@ -48,7 +42,7 @@ class _VideoWidgetState extends State<VideoWidget> {
     print('播放${widget.url}');
     _controller = VideoPlayerController.network(widget.url)
       ..initialize().then((_) {
-        if(mounted){
+        if (mounted) {
           //初始化完成后，更新状态
           setState(() {});
           if (_controller.value.duration == _controller.value.position) {
@@ -61,22 +55,17 @@ class _VideoWidgetState extends State<VideoWidget> {
     _controller.addListener(listener);
   }
 
-
-
   @override
   void deactivate() {
     _controller.removeListener(listener);
     super.deactivate();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     final List<Widget> children = <Widget>[
       // getPreviewImg(),
-       GestureDetector(
+      GestureDetector(
         child: VideoPlayer(_controller),
         onTap: () {
           setState(() {
@@ -105,8 +94,8 @@ class _VideoWidgetState extends State<VideoWidget> {
   Widget getPreviewImg() {
     /*return widget.previewImgUrl.isNotEmpty
         ?   Image.network( widget.previewImgUrl):null;*/
-    return Image.network("https://ww4.sinaimg.cn/bmiddle/c5f4f0ecgy1g2pix22tf0j20c80hq1du.jpg");
-
+    return Image.network(
+        "https://ww4.sinaimg.cn/bmiddle/c5f4f0ecgy1g2pix22tf0j20c80hq1du.jpg");
   }
 
   getMinuteSeconds(var inSeconds) {
@@ -138,15 +127,15 @@ class _VideoWidgetState extends State<VideoWidget> {
       txt = '00:00';
     } else {
       // txt =  '${getMinuteSeconds(_controller.value.position.inSeconds)}/${getMinuteSeconds(_controller.value.duration.inSeconds)}';
-      txt =  '${getMinuteSeconds(_controller.value.duration.inSeconds-_controller.value.position.inSeconds)}';
+      txt =
+          '${getMinuteSeconds(_controller.value.duration.inSeconds - _controller.value.position.inSeconds)}';
     }
     return Container(
-      margin: EdgeInsets.only(bottom: 8,right: 8),
-       child: Text(
+        margin: EdgeInsets.only(bottom: 8, right: 8),
+        child: Text(
           '$txt',
           style: TextStyle(color: Colors.white, fontSize: 14.0),
-        )
-    );
+        ));
   }
 
   getPlayController() {
@@ -185,7 +174,7 @@ class _VideoWidgetState extends State<VideoWidget> {
 
   ///更新播放的URL
   void setUrl(String url) {
-    if(mounted){
+    if (mounted) {
       print('updateUrl');
       if (_controller != null) {
         _controller.removeListener(listener);
@@ -205,11 +194,10 @@ class _VideoWidgetState extends State<VideoWidget> {
   }
 
   Widget getProgressContent() {
-    return ( widget.showProgressText
+    return (widget.showProgressText
         ? Align(
             alignment: Alignment.bottomRight,
-            child:   Offstage(
-
+            child: Offstage(
               child: getDurationText(),
               offstage: !widget.showProgressText,
             ),
@@ -217,5 +205,3 @@ class _VideoWidgetState extends State<VideoWidget> {
         : Container());
   }
 }
-
-

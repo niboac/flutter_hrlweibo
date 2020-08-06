@@ -263,28 +263,9 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
                 Match match = customRegExp.firstMatch(str);
                 map['display'] = match.group(1);
                 map['value'] = match.group(2);
-                print("正则:" + match.group(1) + "---" + match.group(2));
                 return map;
               },
               onTap: (content, contentId) {
-                /*  showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    // return object of type Dialog
-                    return AlertDialog(
-                      title: new Text("Mentions clicked"),
-                      content: new Text("$url clicked."),
-                      actions: <Widget>[
-                        // usually buttons at the bottom of the dialog
-                        new FlatButton(
-                          child: new Text("Close"),
-                          onPressed: () {},
-                        ),
-                      ],
-                    );
-                  },
-                );*/
-
                 Routes.navigateTo(context, Routes.personinfoPage, params: {
                   'userid': contentId,
                 });
@@ -334,7 +315,6 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
             ),
             renderText: ({String str, String pattern}) {
               Map<String, String> map = Map<String, String>();
-              print("表情的正则:" + str);
               String mEmoji2 = "";
               try {
                 String mEmoji = str.replaceAll(RegExp('(\\[/)|(\\])'), "");

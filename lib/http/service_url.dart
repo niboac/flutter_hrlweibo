@@ -1,4 +1,4 @@
-import 'package:flutter_hrlweibo/constant/constant.dart';
+import '../constant/constant.dart';
 
 class ServiceUrl {
   // 请求成功

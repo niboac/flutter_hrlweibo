@@ -13,7 +13,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutter_hrlweibo"
+        android:label="世游会"
         android:networkSecurityConfig="@xml/network_security_config"
 
         android:icon="@mipmap/ic_launcher">

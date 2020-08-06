@@ -181,18 +181,12 @@ class _MsgZanPageState extends State<MsgZanPage> {
           child: Row(
             children: <Widget>[
               new Container(
-                child:
-                    /*Image.network(
-                    mModel.weibopicurl,
+                child: FadeInImage.assetNetwork(
+                    placeholder: Constant.ASSETS_IMG + 'img_default.png',
+                    image: mModel.weibopicurl,
                     fit: BoxFit.fill,
                     width: 90,
-                    height: 90),*/
-                    FadeInImage.assetNetwork(
-                        placeholder: Constant.ASSETS_IMG + 'img_default.png',
-                        image: mModel.weibopicurl,
-                        fit: BoxFit.fill,
-                        width: 90,
-                        height: 90),
+                    height: 90),
               ),
               new Container(
                 margin: EdgeInsets.only(left: 10.0),
@@ -206,13 +200,7 @@ class _MsgZanPageState extends State<MsgZanPage> {
                     new Container(
                         margin: EdgeInsets.only(top: 5.0),
                         width: MediaQuery.of(context).size.width * 0.6,
-                        child:
-                            /* Text('' + widget.mModel.content,
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis),
-                    )*/
-                            ParsedText(
+                        child: ParsedText(
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           text: mModel.weibcontent,
@@ -232,10 +220,7 @@ class _MsgZanPageState extends State<MsgZanPage> {
                                   Match match = customRegExp.firstMatch(str);
                                   map['display'] = match.group(1);
                                   map['value'] = match.group(2);
-                                  print("正则:" +
-                                      match.group(1) +
-                                      "---" +
-                                      match.group(2));
+
                                   return map;
                                 },
                                 onTap: (url) {
@@ -259,8 +244,6 @@ class _MsgZanPageState extends State<MsgZanPage> {
                                 }),
                             MatchText(
                                 pattern: '#.*?#',
-                                //       pattern: r"\B#+([\w]+)\B#",
-                                //   pattern: r"\[(#[^:]+):([^#]+)\]",
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 13,
@@ -268,12 +251,6 @@ class _MsgZanPageState extends State<MsgZanPage> {
                                 renderText: ({String str, String pattern}) {
                                   Map<String, String> map =
                                       Map<String, String>();
-                                  //  RegExp customRegExp = RegExp(pattern);
-                                  //#fskljflsk:12#
-                                  // Match match = customRegExp.firstMatch(str);
-
-                                  /*  String idStr =str.substring(str.indexOf(";"),
-                     (str.lastIndexOf("#")-1));*/
 
                                   String idStr = str.substring(
                                       str.indexOf(":") + 1,
@@ -284,7 +261,6 @@ class _MsgZanPageState extends State<MsgZanPage> {
                                       .replaceAll(":" + idStr, "");
                                   map['display'] = showStr;
                                   map['value'] = idStr;
-                                  //   print("正则:"+str+"---"+idStr+"--"+startIndex.toString()+"--"+str.lastIndexOf("#").toString());
 
                                   return map;
                                 },
@@ -317,7 +293,6 @@ class _MsgZanPageState extends State<MsgZanPage> {
                               ),
                               renderText: ({String str, String pattern}) {
                                 Map<String, String> map = Map<String, String>();
-                                print("表情的正则:" + str);
                                 String mEmoji2 = "";
                                 try {
                                   String mEmoji = str.replaceAll(

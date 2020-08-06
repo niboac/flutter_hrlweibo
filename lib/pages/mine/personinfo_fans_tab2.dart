@@ -9,12 +9,12 @@ class FanListPage extends StatefulWidget {
 }
 
 class FanListPageState extends State<FanListPage> {
-  ScrollController mListController = new ScrollController();
+  ScrollController mListController = ScrollController();
   List<FanFollowModel> mFanList;
   num curPage = 1;
   bool isloadingMore = false; //是否显示加载中
   bool ishasMore = true; //是否还有更多
-  var mTextController = new TextEditingController();
+  var mTextController = TextEditingController();
 
   //下拉刷新
   Future _pullToRefresh() async {
@@ -139,9 +139,9 @@ class FanListPageState extends State<FanListPage> {
               ],
             )),
           ))
-        : new Container(
+        : Container(
             child: ishasMore
-                ? new Container()
+                ? Container()
                 : Center(
                     child: Container(
                         margin: EdgeInsets.only(top: 5, bottom: 5),
@@ -159,11 +159,11 @@ class FanListPageState extends State<FanListPage> {
           margin: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
           child: InkWell(
             child: Container(
-                padding: new EdgeInsets.only(
+                padding: EdgeInsets.only(
                     top: 7.0, bottom: 7.0, left: 5.0, right: 5.0),
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: new BorderRadius.circular(5.0),
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Row(
                   children: <Widget>[
@@ -215,7 +215,6 @@ class FanListPageState extends State<FanListPage> {
           Container(
             padding: EdgeInsets.only(top: 12, bottom: 12),
             color: Colors.white,
-            //child:new Text(    '${mModel.nick }'  ),
             child: Row(
               children: <Widget>[
                 Container(
@@ -250,8 +249,8 @@ class FanListPageState extends State<FanListPage> {
                     )
                   ],
                 ),
-                Expanded(
-                    child: new Align(
+                Container(
+                    child: Align(
                   alignment: FractionalOffset.centerRight,
                   child: mFollowBtnWidget(mModel, i - 1),
                 ))
@@ -274,12 +273,12 @@ class FanListPageState extends State<FanListPage> {
         margin: EdgeInsets.only(right: 15),
         child: InkWell(
           child: Container(
-              padding: new EdgeInsets.only(
-                  top: 4.0, bottom: 4.0, left: 6.0, right: 6.0),
-              decoration: new BoxDecoration(
+              padding:
+                  EdgeInsets.only(top: 4.0, bottom: 4.0, left: 6.0, right: 6.0),
+              decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Color(0xff999999)),
-                borderRadius: new BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -303,12 +302,12 @@ class FanListPageState extends State<FanListPage> {
         margin: EdgeInsets.only(right: 15),
         child: InkWell(
           child: Container(
-            padding: new EdgeInsets.only(
-                top: 4.0, bottom: 4.0, left: 6.0, right: 6.0),
-            decoration: new BoxDecoration(
+            padding:
+                EdgeInsets.only(top: 4.0, bottom: 4.0, left: 6.0, right: 6.0),
+            decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: Colors.orange),
-              borderRadius: new BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(5.0),
             ),
             child: Text("+关注",
                 style: TextStyle(color: Colors.orange, fontSize: 12)),
@@ -334,12 +333,12 @@ class FanListPageState extends State<FanListPage> {
         margin: EdgeInsets.only(right: 15),
         child: InkWell(
           child: Container(
-              padding: new EdgeInsets.only(
-                  top: 4.0, bottom: 4.0, left: 6.0, right: 6.0),
-              decoration: new BoxDecoration(
+              padding:
+                  EdgeInsets.only(top: 4.0, bottom: 4.0, left: 6.0, right: 6.0),
+              decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Color(0xff999999)),
-                borderRadius: new BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,

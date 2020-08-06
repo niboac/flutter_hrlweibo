@@ -15,8 +15,8 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-String _inputAccount = "";
-String _inputPwd = "";
+String _inputAccount = "test1";
+String _inputPwd = "123";
 
 class _LoginPageState extends State<LoginPage> {
   @override
@@ -28,23 +28,23 @@ class _LoginPageState extends State<LoginPage> {
       SpUtil.putDouble(Constant.SP_KEYBOARD_HEGIHT, keyHeight);
     }
 
-    return new Material(
-      child: new Scaffold(
+    return Material(
+      child: Scaffold(
           backgroundColor: Colors.white,
-          body: new DropdownButtonHideUnderline(
-            child: new ListView(
+          body: DropdownButtonHideUnderline(
+            child: ListView(
               children: <Widget>[
                 // CupertinoActivityIndicator(),
                 buildTile(),
-                new Container(
+                Container(
                   margin:
                       const EdgeInsets.only(left: 20.0, top: 30.0, bottom: 20),
-                  child: new Text(
+                  child: Text(
                     "请输入账号密码",
-                    style: new TextStyle(fontSize: 24.0, color: Colors.black),
+                    style: TextStyle(fontSize: 24.0, color: Colors.black),
                   ),
                 ),
-                new Container(
+                Container(
                   margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                   child: AccountEditText(
                     contentStrCallBack: (content) {
@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ),
-                new Container(
+                Container(
                   margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                   child: PwdEditText(
                     contentStrCallBack: (content) {
@@ -75,8 +75,8 @@ class _LoginPageState extends State<LoginPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween, //子组件的排列方式为主轴两端对齐
       children: <Widget>[
-        new InkWell(
-          child: new Padding(
+        InkWell(
+          child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Image.asset(
                 Constant.ASSETS_IMG + 'icon_close.png',
@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pop(context);
           },
         ),
-        new InkWell(
+        InkWell(
           child: new Padding(
               padding: const EdgeInsets.all(12.0),
               child: new Text(

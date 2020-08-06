@@ -55,7 +55,6 @@ class Routes {
     router.define(msgZanPage, handler: msgZanHandler);
     router.define(msgCommentPage, handler: msgCommentHandler);
     router.define(videoDetailPage, handler: videoetailHandler);
-
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配(https://www.jianshu.com/p/e575787d173c)

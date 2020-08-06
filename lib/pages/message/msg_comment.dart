@@ -230,10 +230,6 @@ class _MsgCommentPageState extends State<MsgCommentPage> {
                                   Match match = customRegExp.firstMatch(str);
                                   map['display'] = match.group(1);
                                   map['value'] = match.group(2);
-                                  print("正则:" +
-                                      match.group(1) +
-                                      "---" +
-                                      match.group(2));
                                   return map;
                                 },
                                 onTap: (url) {
@@ -276,7 +272,6 @@ class _MsgCommentPageState extends State<MsgCommentPage> {
                                       .replaceAll(":" + idStr, "");
                                   map['display'] = showStr;
                                   map['value'] = idStr;
-                                  //   print("正则:"+str+"---"+idStr+"--"+startIndex.toString()+"--"+str.lastIndexOf("#").toString());
                                   return map;
                                 },
                                 onTap: (url) async {
@@ -308,7 +303,6 @@ class _MsgCommentPageState extends State<MsgCommentPage> {
                               ),
                               renderText: ({String str, String pattern}) {
                                 Map<String, String> map = Map<String, String>();
-                                print("表情的正则:" + str);
                                 String mEmoji2 = "";
                                 try {
                                   String mEmoji = str.replaceAll(
