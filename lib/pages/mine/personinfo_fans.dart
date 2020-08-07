@@ -70,13 +70,11 @@ class _FanPageState extends State<FanPage> {
                 indicatorColor: Colors.deepOrange,
                 indicatorWeight: 2,
                 indicatorSize: TabBarIndicatorSize.label,
-                //indicatorPadding: EdgeInsets.only(bottom: 10.0),
-                //labelPadding: EdgeInsets.only(left: 20),
                 labelColor: Color(0xff333333),
                 labelStyle: TextStyle(
                   fontSize: 16.0,
                 ),
-                unselectedLabelColor: Color(0xff666666),
+                unselectedLabelColor: Color(0x99666666),
                 unselectedLabelStyle: TextStyle(
                   fontSize: 14.0,
                 ),

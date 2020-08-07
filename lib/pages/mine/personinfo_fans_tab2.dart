@@ -108,7 +108,7 @@ class FanListPageState extends State<FanListPage> {
       return RefreshIndicator(
           child: ListView.builder(
             itemCount: mFanList.length + 2,
-            itemBuilder: (context, i) => mFollowItem(i),
+            itemBuilder: (context, i) => followItemTile(i),
             physics: const AlwaysScrollableScrollPhysics(),
             controller: mListController,
           ),
@@ -202,7 +202,7 @@ class FanListPageState extends State<FanListPage> {
     );
   }
 
-  Widget mFollowItem(i) {
+  Widget followItemTile(i) {
     if (i == 0) {
       return mFanTop();
     } else if (i == mFanList.length + 1) {
@@ -210,59 +210,23 @@ class FanListPageState extends State<FanListPage> {
     } else {
       FanFollowModel mModel = mFanList[i - 1];
 
-      return Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(top: 12, bottom: 12),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.only(left: 15, right: 15),
-                    child: CircleAvatar(
-                      //头像半径
-                      radius: 25,
-                      //头像图片 -> NetworkImage网络图片，AssetImage项目资源包图片, FileImage本地存储图片
-                      backgroundImage: NetworkImage('${mModel.headurl}'),
-                    )),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        '${mModel.nick}',
-                        style: TextStyle(
-                            letterSpacing: 0,
-                            color: Colors.black,
-                            fontSize: 14),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 8),
-                      child: Text(
-                        '${mModel.decs}',
-                        style: TextStyle(
-                            letterSpacing: 0,
-                            color: Color(0xff666666),
-                            fontSize: 12),
-                      ),
-                    )
-                  ],
-                ),
-                Container(
-                    child: Align(
-                  alignment: FractionalOffset.centerRight,
-                  child: mFollowBtnWidget(mModel, i - 1),
-                ))
-              ],
-            ),
-          ),
-          Container(
-            height: 0.5,
-            color: Colors.black12,
-            //  margin: EdgeInsets.only(left: 60),
-          ),
-        ],
+      return ListTile(
+        leading: CircleAvatar(
+          //头像半径
+          radius: 25,
+          //头像图片 -> NetworkImage网络图片，AssetImage项目资源包图片, FileImage本地存储图片
+          backgroundImage: NetworkImage('${mModel.headurl}'),
+        ),
+        title: Text(
+          '${mModel.nick}',
+          style: TextStyle(letterSpacing: 0, color: Colors.black, fontSize: 14),
+        ),
+        subtitle: Text(
+          '${mModel.decs}',
+          style: TextStyle(
+              letterSpacing: 0, color: Color(0xff666666), fontSize: 10),
+        ),
+        trailing: mFollowBtnWidget(mModel, i - 1),
       );
     }
   }
@@ -270,7 +234,7 @@ class FanListPageState extends State<FanListPage> {
   Widget mFollowBtnWidget(FanFollowModel mModel, int position) {
     if (mModel.relation == 0) {
       return Container(
-        margin: EdgeInsets.only(right: 15),
+        margin: EdgeInsets.only(right: 5),
         child: InkWell(
           child: Container(
               padding:
@@ -299,7 +263,7 @@ class FanListPageState extends State<FanListPage> {
       );
     } else if (mModel.relation == 1) {
       return Container(
-        margin: EdgeInsets.only(right: 15),
+        margin: EdgeInsets.only(right: 5),
         child: InkWell(
           child: Container(
             padding:
@@ -330,7 +294,6 @@ class FanListPageState extends State<FanListPage> {
       );
     } else if (mModel.relation == 2) {
       return Container(
-        margin: EdgeInsets.only(right: 15),
         child: InkWell(
           child: Container(
               padding:

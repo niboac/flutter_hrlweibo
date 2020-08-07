@@ -288,7 +288,6 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
                     .replaceAll(":" + idStr, "");
                 map['display'] = showStr;
                 map['value'] = idStr;
-                //   print("正则:"+str+"---"+idStr+"--"+startIndex.toString()+"--"+str.lastIndexOf("#").toString());
 
                 return map;
               },
