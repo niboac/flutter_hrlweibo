@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/constant/constant.dart';
 import 'package:flutter_hrlweibo/http/service_method.dart';
@@ -204,16 +203,6 @@ Widget _authorRow(BuildContext context, WeiBoModel weiboItem) {
 }
 
 Widget mVedioLayout(BuildContext context, String vedioUrl) {
-/*return
-  Container(
-
-
-    height: 100,
-    width: 100,
-    color: Colors.deepOrangeAccent,
-  )
-  ;*/
-
   return Container(
     child: Container(
         margin: EdgeInsets.only(left: 15, right: 15),
