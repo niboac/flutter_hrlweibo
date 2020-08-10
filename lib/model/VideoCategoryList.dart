@@ -1,16 +1,16 @@
-import 'VedioCategory.dart';
+import 'VideoCategory.dart';
 
-class VedioCategoryList {
+class VideoCategoryList {
   int status;
-  List<VedioCategory> data;
-  VedioCategoryList({this.status, this.data});
+  List<VideoCategory> data;
+  VideoCategoryList({this.status, this.data});
 
-  VedioCategoryList.fromJson(Map<String, dynamic> json) {
+  VideoCategoryList.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = new List<VedioCategory>();
+      data = new List<VideoCategory>();
       json['data'].forEach((v) {
-        data.add(new VedioCategory.fromJson(v));
+        data.add(new VideoCategory.fromJson(v));
       });
     }
   }

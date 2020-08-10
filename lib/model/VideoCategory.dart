@@ -1,14 +1,10 @@
-
-
-class VedioCategory {
+class VideoCategory {
   int id;
   String cname;
 
+  VideoCategory({this.id, this.cname});
 
-
-  VedioCategory({this.id, this.cname});
-
-  VedioCategory.fromJson(Map<String, dynamic> json) {
+  VideoCategory.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     cname = json['cname'];
   }
@@ -22,8 +18,6 @@ class VedioCategory {
 
   @override
   String toString() {
-    return 'VedioCategory{id: $id, cname: $cname}';
+    return 'VideoCategory{id: $id, cname: $cname}';
   }
-
-
 }

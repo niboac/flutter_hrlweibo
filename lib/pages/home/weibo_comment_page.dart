@@ -28,33 +28,25 @@ class _CommentDialogPageState extends State<CommentDialogPage> {
             //对齐底部
             alignment: Alignment.bottomCenter,
             child: Container(
-                child: Container(
-                    color: Color(0xffF8F8F8),
-                    height: 140,
-                    child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      //  mainAxisSize: MainAxisSize.max,
-                      // mainAxisAlignment: MainAxisAlignment.end,
+                color: Color(0xffF8F8F8),
+                height: 140,
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start, //主轴从上到下
                       children: <Widget>[
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start, //主轴从上到下
-                          children: <Widget>[
-                            buildTextField(context),
-                            buildEtRight(),
-                          ],
-                        ),
-                        buildEtBottom(),
+                        buildTextField(context),
+                        buildEtRight(),
                       ],
-                    )))));
+                    ),
+                  ],
+                ))));
   }
 
   //输入框布局
   Widget buildTextField(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(left: 15, top: 15),
-        //padding: const EdgeInsets.all(8.0),
-        //    alignment: Alignment.center,
-        // color: Colors.blue,
         width: ((MediaQuery.of(context).size.width / 5) * 4),
         child: TextField(
           style: TextStyle(color: Colors.black, fontSize: 13),
@@ -69,12 +61,6 @@ class _CommentDialogPageState extends State<CommentDialogPage> {
               borderSide: const BorderSide(color: Colors.grey, width: 0.0),
               borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
             ),
-            /*     disabledBorder:const OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.grey, width: 0.0),
-            borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
-
-          ),*/
-
             focusedBorder: const OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.grey, width: 0.0),
               borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
@@ -86,9 +72,7 @@ class _CommentDialogPageState extends State<CommentDialogPage> {
             hintText: "写评论...",
             hintStyle: TextStyle(fontSize: 13, color: Colors.grey),
           ),
-        )
-        /* child: Text('aaa'),*/
-        );
+        ));
   }
 
   //输入框右侧发送按钮所在布局
@@ -152,97 +136,6 @@ class _CommentDialogPageState extends State<CommentDialogPage> {
                   ))
             ],
           ),
-        ));
-  }
-
-  //输入框底部布局
-  Widget buildEtBottom() {
-    return Container(
-        margin: EdgeInsets.only(left: 15, right: 5, bottom: 5, top: 10),
-        child: Row(
-          /* mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,*/
-          children: <Widget>[
-            InkWell(
-              onTap: () {
-                setState(() {
-                  _checkValue = !_checkValue;
-                });
-              },
-              child: Container(
-                // decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: _checkValue
-                      ? Image.asset(
-                          Constant.ASSETS_IMG + 'guide_checkbox_checked.png',
-                          width: 20.0,
-                          height: 20.0,
-                        )
-                      : Image.asset(
-                          Constant.ASSETS_IMG + 'guide_checkbox.png',
-                          width: 20.0,
-                          height: 20.0,
-                        ),
-                ),
-              ),
-            ),
-            Text('同时转发'),
-            new Expanded(
-              child: InkWell(
-                child: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_picture.png',
-                  width: 20.0,
-                  height: 20.0,
-                ),
-                onTap: () {},
-              ),
-              flex: 1,
-            ),
-            new Expanded(
-              child: InkWell(
-                child: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_mention.png',
-                  width: 20.0,
-                  height: 20.0,
-                ),
-                onTap: () {},
-              ),
-              flex: 1,
-            ),
-            new Expanded(
-              child: InkWell(
-                child: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_gif.png',
-                  width: 20.0,
-                  height: 20.0,
-                ),
-                onTap: () {},
-              ),
-              flex: 1,
-            ),
-            new Expanded(
-              child: InkWell(
-                child: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_emotion.png',
-                  width: 20.0,
-                  height: 20.0,
-                ),
-                onTap: () {},
-              ),
-              flex: 1,
-            ),
-            new Expanded(
-              child: InkWell(
-                child: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_add.png',
-                  width: 20.0,
-                  height: 20.0,
-                ),
-                onTap: () {},
-              ),
-            ),
-          ],
         ));
   }
 }

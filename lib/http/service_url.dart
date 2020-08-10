@@ -6,8 +6,8 @@ class ServiceUrl {
   static String getWeiBo =
       Constant.baseUrl + 'manage/hrlweibo/list.do'; // 获取首页微博列表
   static String login = Constant.baseUrl + 'manage/hrluser/login.do'; // 登录
-  static String getVedioCategory =
-      Constant.baseUrl + 'manage/hrlvedio/list.do'; // 获取视频分类
+  static String getVideoCategory =
+      Constant.baseUrl + 'manage/hrlvideo/list.do'; // 获取视频分类
   static String feedback =
       Constant.baseUrl + 'manage/hrluser/uploadfile.do'; // 意见反馈
   static String updateHead =
@@ -59,14 +59,14 @@ class ServiceUrl {
   static String getMsgZanList =
       Constant.baseUrl + 'hrlmessage/zanlist.do'; //消息-赞列表
   static String getVideoRecommendList =
-      Constant.baseUrl + 'manage/hrlvedio/recommendlist.do'; //视频-推荐列表
+      Constant.baseUrl + 'manage/hrlvideo/recommendlist.do'; //视频-推荐列表
   static String getVideoHotList =
-      Constant.baseUrl + 'manage/hrlvedio/hotlist.do'; //视频-热门列表
+      Constant.baseUrl + 'manage/hrlvideo/hotlist.do'; //视频-热门列表
   static String getVideoHotBannerAdList =
-      Constant.baseUrl + 'manage/hrlvedio/hotbannerad.do'; //视频-热门banner广告
+      Constant.baseUrl + 'manage/hrlvideo/hotbannerad.do'; //视频-热门banner广告
   static String getVideoSmallList =
-      Constant.baseUrl + 'manage/hrlvedio/smallVideolist.do'; //视频-小视频列表
+      Constant.baseUrl + 'manage/hrlvideo/smallVideolist.do'; //视频-小视频列表
   static String getVideoDetailRecommendList = Constant.baseUrl +
-      'manage/hrlvedio/videodetailrecommedlist.do'; //视频详情-推荐列表
+      'manage/hrlvideo/videodetailrecommedlist.do'; //视频详情-推荐列表
 
 }

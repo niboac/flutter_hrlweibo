@@ -37,7 +37,7 @@ Widget _wholeItemWidget(
       children: <Widget>[
         _authorRow(context, weiboItem),
         textContent(weiboItem.content, context, isDetail),
-        mVedioLayout(context, weiboItem.vediourl),
+        mVideoLayout(context, weiboItem.videourl),
         _NineGrid(context, weiboItem.picurl),
         _RetWeetLayout(context, weiboItem, isDetail),
         Visibility(
@@ -71,7 +71,8 @@ Widget _wholeItemWidget(
 Widget _authorRow(BuildContext context, WeiBoModel weiboItem) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 2.0),
-    child: Row(
+    child: Flex(
+      direction: Axis.horizontal,
       children: <Widget>[
         InkWell(
           onTap: () {
@@ -81,8 +82,9 @@ Widget _authorRow(BuildContext context, WeiBoModel weiboItem) {
           },
           child: Container(
             margin: EdgeInsets.only(right: 5),
-            child: weiboItem.userInfo.isvertify == 0
-                ? Container(
+            child: Stack(
+              children: <Widget>[
+                Container(
                     width: 40.0,
                     height: 40.0,
                     decoration: BoxDecoration(
@@ -91,132 +93,113 @@ Widget _authorRow(BuildContext context, WeiBoModel weiboItem) {
                       image: DecorationImage(
                           image: NetworkImage(weiboItem.userInfo.headurl),
                           fit: BoxFit.cover),
-                    ))
-                : Stack(
-                    children: <Widget>[
-                      Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.transparent,
-                            image: DecorationImage(
-                                image: NetworkImage(weiboItem.userInfo.headurl),
-                                fit: BoxFit.cover),
-                          )),
-                      Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: Container(
-                          child: Image.asset(
-                            (weiboItem.userInfo.isvertify == 1)
-                                ? Constant.ASSETS_IMG + 'home_vertify.webp'
-                                : Constant.ASSETS_IMG + 'home_vertify2.webp',
-                            width: 15.0,
-                            height: 15.0,
-                          ),
-                        ),
-                      ),
-                    ],
+                    )),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    child: Image.asset(
+                      (weiboItem.userInfo.isvertify == 1)
+                          ? Constant.ASSETS_IMG + 'home_vertify.webp'
+                          : Constant.ASSETS_IMG + 'home_vertify2.webp',
+                      width: 15.0,
+                      height: 15.0,
+                    ),
                   ),
-          ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Center(
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0.0, 0.0),
-                      child: Text(weiboItem.userInfo.nick,
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: weiboItem.userInfo.ismember == 0
-                                  ? Colors.black
-                                  : Color(0xffF86119)))),
                 ),
-                Center(
-                  child: weiboItem.userInfo.ismember == 0
-                      ? new Container()
-                      : Container(
-                          margin: EdgeInsets.only(left: 5),
-                          child: Image.asset(
-                            Constant.ASSETS_IMG + 'home_memeber.webp',
-                            width: 15.0,
-                            height: 13.0,
-                          ),
-                        ),
-                )
               ],
             ),
-            Padding(
-                padding: const EdgeInsets.fromLTRB(6.0, 2.0, 0.0, 0.0),
-                child: weiboItem.tail.isEmpty
-                    ? Text(weiboItem.userInfo.decs,
-                        style:
-                            TextStyle(color: Color(0xff808080), fontSize: 11.0))
-                    : Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                              DateUtil.getFormatTime(
-                                  DateTime.fromMillisecondsSinceEpoch(
-                                      weiboItem.createtime)),
-                              style: TextStyle(
-                                  color: Color(0xff808080), fontSize: 11.0)),
-                          Container(
-                            margin: EdgeInsets.only(left: 7, right: 7),
-                            child: Text("来自",
-                                style: TextStyle(
-                                    color: Color(0xff808080), fontSize: 11.0)),
-                          ),
-                          Text(weiboItem.tail,
-                              style: TextStyle(
-                                  color: Color(0xff5B778D), fontSize: 11.0))
-                        ],
-                      )),
-          ],
+          ),
+        ),
+        SizedBox(
+          width: 6,
         ),
         Expanded(
-          child: new Align(
-              alignment: FractionalOffset.centerRight,
-              child: GestureDetector(
-                child: Container(
-                  padding: new EdgeInsets.only(
-                      top: 4.0, bottom: 4.0, left: 8.0, right: 8.0),
-                  decoration: new BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.orange),
-                    borderRadius: new BorderRadius.circular(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(weiboItem.userInfo.nick,
+                      style: TextStyle(
+                          fontSize: 15.0,
+                          color: weiboItem.userInfo.ismember == 0
+                              ? Colors.black
+                              : Color(0xffF86119))),
+                  Container(
+                    margin: EdgeInsets.only(left: 5),
+                    child: Image.asset(
+                      Constant.ASSETS_IMG + 'home_memeber.webp',
+                      width: 15.0,
+                      height: 13.0,
+                    ),
                   ),
-                  child: Text(
-                    '+ 关注',
-                    style: TextStyle(color: Colors.orange, fontSize: 12),
-                  ),
-                ),
-              )),
+                ],
+              ),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 0.0),
+                  child: weiboItem.tail.isEmpty
+                      ? Text(weiboItem.userInfo.decs,
+                          style: TextStyle(
+                              color: Color(0xff808080), fontSize: 11.0))
+                      : RichText(
+                          text: TextSpan(
+                            text: DateUtil.getFormatTime(
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    weiboItem.createtime)),
+                            style: TextStyle(
+                                color: Color(0xff808080), fontSize: 11.0),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '来自',
+                                  style: TextStyle(
+                                      color: Color(0xff808080),
+                                      fontSize: 11.0)),
+                              TextSpan(
+                                  text: weiboItem.tail,
+                                  style: TextStyle(
+                                      color: Color(0xff5B778D),
+                                      fontSize: 11.0)),
+                            ],
+                          ),
+                        )),
+            ],
+          ),
+        ),
+        SizedBox(
+          child: Container(
+            padding: new EdgeInsets.only(
+                top: 1.0, bottom: 1.0, left: 8.0, right: 8.0),
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.orange),
+              borderRadius: new BorderRadius.circular(22.0),
+            ),
+            child: Text(
+              '+ 关注',
+              style: TextStyle(color: Colors.orange, fontSize: 12),
+            ),
+          ),
         )
       ],
     ),
   );
 }
 
-Widget mVedioLayout(BuildContext context, String vedioUrl) {
+Widget mVideoLayout(BuildContext context, String videoUrl) {
   return Container(
     child: Container(
         margin: EdgeInsets.only(left: 15, right: 15),
-        child: (vedioUrl.isEmpty || "null" == vedioUrl)
-            ? new Container()
+        child: (videoUrl == null || videoUrl == "null")
+            ? Container()
             : Container(
                 constraints: BoxConstraints(
                     maxHeight: 250,
                     maxWidth: MediaQuery.of(context).size.width,
-                    //    maxWidth: 200,
                     minHeight: 150,
                     minWidth: 150),
                 child: VideoWidget(
-                  vedioUrl,
+                  videoUrl,
                 ))),
   );
 }
@@ -377,7 +360,7 @@ Widget _RetWeetLayout(
                   isDetail),
               /*   Text(,
                     style: TextStyle(color: Colors.black, fontSize: 12)),*/
-              mVedioLayout(context, weiboItem.zfVedioUrl),
+              mVideoLayout(context, weiboItem.zfVideoUrl),
               _NineGrid(context, weiboItem.zfPicurl),
             ],
           )),

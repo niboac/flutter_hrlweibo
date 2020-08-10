@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/http/service_method.dart';
-import 'package:flutter_hrlweibo/model/VedioCategory.dart';
-import 'package:flutter_hrlweibo/model/VedioCategoryList.dart';
+import 'package:flutter_hrlweibo/model/VideoCategory.dart';
+import 'package:flutter_hrlweibo/model/VideoCategoryList.dart';
 import 'package:flutter_hrlweibo/public.dart';
-import 'vedio/video_hot_page.dart';
-import 'vedio/video_recommend_page.dart';
-import 'vedio/video_smallvideo_page.dart';
+import 'video/video_hot_page.dart';
+import 'video/video_recommend_page.dart';
+import 'video/video_smallvideo_page.dart';
 
 class VideoPage extends StatefulWidget {
   @override
@@ -15,18 +15,18 @@ class VideoPage extends StatefulWidget {
 
 class _VideoPageState extends State<VideoPage> with TickerProviderStateMixin {
   TabController mTabController;
-  List<VedioCategory> mTabList = new List();
+  List<VideoCategory> mTabList = new List();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    mTabList.add(new VedioCategory(id: 1, cname: "推荐"));
-    mTabList.add(new VedioCategory(id: 2, cname: "热门"));
-    mTabList.add(new VedioCategory(id: 3, cname: "小视频"));
+    mTabList.add(new VideoCategory(id: 1, cname: "推荐"));
+    mTabList.add(new VideoCategory(id: 2, cname: "热门"));
+    mTabList.add(new VideoCategory(id: 3, cname: "小视频"));
     mTabController = TabController(length: mTabList.length, vsync: this);
-    DioManager.getInstance().post(ServiceUrl.getVedioCategory, null, (data) {
-      List<VedioCategory> mList = VedioCategoryList.fromJson(data['data']).data;
+    DioManager.getInstance().post(ServiceUrl.getVideoCategory, null, (data) {
+      List<VideoCategory> mList = VideoCategoryList.fromJson(data['data']).data;
       setState(() {
         mTabList = mList;
         mTabController = TabController(length: mTabList.length, vsync: this);
@@ -51,7 +51,8 @@ class _VideoPageState extends State<VideoPage> with TickerProviderStateMixin {
                   indicatorColor: Colors.transparent,
                   labelColor: Color(0xffF78005),
                   unselectedLabelColor: Color(0xff666666),
-                  labelStyle:TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700),
+                  labelStyle:
+                      TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700),
                   unselectedLabelStyle: TextStyle(fontSize: 16.0),
                   indicatorSize: TabBarIndicatorSize.label,
                   controller: mTabController,
@@ -112,9 +113,11 @@ class _VideoPageState extends State<VideoPage> with TickerProviderStateMixin {
       ),
     );
   }
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<TabController>('mTabController', mTabController));
+    properties.add(
+        DiagnosticsProperty<TabController>('mTabController', mTabController));
   }
 }
