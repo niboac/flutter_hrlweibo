@@ -45,7 +45,7 @@ class SplashPageState extends State<SplashPage> {
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(top: 100),
                     child: Image.asset(
-                      Constant.ASSETS_IMG + 'welcome_android_slogan.png',
+                      Constant.ASSETS_IMG + 'welcome-slogan.jpg',
                       width: 200.0,
                       height: 100.0,
                     ),
@@ -61,7 +61,7 @@ class SplashPageState extends State<SplashPage> {
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset(
-                      Constant.ASSETS_IMG + 'welcome_android_logo.png',
+                      Constant.ASSETS_IMG + 'welcome-logo.png',
                       width: 100.0,
                       height: 100.0,
                     ),
