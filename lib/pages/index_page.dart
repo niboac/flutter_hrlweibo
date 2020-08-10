@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hrlweibo/pages/find_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:lottie/lottie.dart';
 
 import 'home_page.dart';
 import 'mine_page.dart';
@@ -12,59 +13,58 @@ class IndexPage extends StatefulWidget {
   _IndexPageState createState() => _IndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage> {
+class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
   int _tabIndex = 0;
   var tabImages;
   var appBarTitles = ['首页', '发现', '我'];
   var currentPage;
   DateTime lastPopTime;
 
-  /*
-   * 根据选择获得对应的normal或是press的icon
-   */
-  getTabIcon(int curIndex) {
-    if (curIndex == _tabIndex) {
-      return tabImages[curIndex][1];
-    }
-    return tabImages[curIndex][0];
-  }
-
-  getTabImage(path) {
-    return ImageIcon(
-      AssetImage(path),
-      size: 25,
-    );
-  }
-
-  void initData() {
-    tabImages = [
-      [
-        Icon(IconFont.icon_home),
-        Icon(IconFont.icon_home2),
-      ],
-      [
-        Icon(IconFont.icon_quanzi),
-        Icon(IconFont.icon_quanzi2),
-      ],
-      [
-        Icon(IconFont.icon_user),
-        Icon(IconFont.icon_youxi),
-      ],
-    ];
-  }
-
   final List<Widget> tabBodies = [HomePage(), FindPage(), MinePage()];
+
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    initData();
     final List<BottomNavigationBarItem> bottomTabs = [
       BottomNavigationBarItem(
-          icon: getTabIcon(0), title: Text(appBarTitles[0])),
+        icon: Icon(IconFont.icon_home),
+        title: Text(appBarTitles[0]),
+        activeIcon: Lottie.asset(
+          'assets/lottie/star-smash.json',
+          onLoaded: (composition) {
+            _controller.duration = composition.duration;
+            _controller.animateTo(10);
+          },
+          width: 20,
+          height: 25,
+          repeat: false,
+          fit: BoxFit.fill,
+        ),
+      ),
       BottomNavigationBarItem(
-          icon: getTabIcon(1), title: Text(appBarTitles[1])),
+        icon: Icon(IconFont.icon_quanzi),
+        title: Text(appBarTitles[1]),
+        activeIcon: Icon(IconFont.icon_quanzi2),
+      ),
       BottomNavigationBarItem(
-          icon: getTabIcon(2), title: Text(appBarTitles[2])),
+        icon: Icon(IconFont.icon_user),
+        title: Text(appBarTitles[2]),
+        activeIcon: Icon(IconFont.icon_youxi),
+      ),
     ];
 
     return SafeArea(
