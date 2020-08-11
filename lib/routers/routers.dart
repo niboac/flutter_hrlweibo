@@ -25,16 +25,11 @@ class Routes {
   static String videoDetailPage = '/videoDetailPage';
 
   static void configureRoutes(Router router) {
-    // List widgetDemosList = new WidgetDemoList().getDemos();
     router.notFoundHandler = new Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print('route not found!');
     });
 
-    /*  router.define(home, handler: homeHandler);
-
-    router.define('/category/:type', handler: categoryHandler);
-    router.define('/category/error/404', handler: widgetNotFoundHandler);*/
     router.define(indexPage, handler: indexPageHandler);
 
     router.define(loginPage, handler: loginPageHandler);

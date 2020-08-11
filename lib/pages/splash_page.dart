@@ -21,14 +21,11 @@ class SplashPageState extends State<SplashPage> {
     super.initState();
     // App启动时读取Sp数据，需要异步等待Sp初始化完成。
     SpUtil.getInstance();
-    Future.delayed(new Duration(seconds: 1), () {
-      if (!UserUtil.isLogin()) {
-        Navigator.pop(context);
-        Routes.navigateTo(context, Routes.loginPage, clearStack: true);
-      } else {
-        Navigator.pop(context);
-        Routes.navigateTo(context, Routes.indexPage, clearStack: true);
-      }
+    Future.delayed(new Duration(milliseconds: 100), () {
+      Navigator.pop(context);
+      Routes.navigateTo(
+          context, UserUtil.isLogin() ? Routes.indexPage : Routes.loginPage,
+          clearStack: true);
     });
   }
 

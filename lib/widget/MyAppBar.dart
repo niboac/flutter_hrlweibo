@@ -20,11 +20,9 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     List actions = this.widget.actions;
-    if (actions != null) {
-      actions.add(SizedBox(
-        width: 10,
-      ));
-    }
+    actions?.add(SizedBox(
+      width: 10,
+    ));
 
     return AppBar(
       backgroundColor: Color(0xffFAFAFA),
