@@ -22,7 +22,7 @@ class DioManager {
     dio.options.baseUrl = Constant.baseUrl;
     dio.options.connectTimeout = 5000;
     dio.options.receiveTimeout = 3000;
-    dio.interceptors.add(LogInterceptor(responseBody: true)); //是否开启请求日志
+    dio.interceptors.add(LogInterceptor(responseBody: false)); //是否开启请求日志
   }
 
 //get请求
@@ -70,16 +70,24 @@ class DioManager {
       _error(errorCallBack, error.message);
       return '';
     }
-    // debug模式打印相关数据
     if (Constant.ISDEBUG) {
-      print('请求url: ' + url);
-      print('请求头: ' + dio.options.headers.toString());
-      if (params != null) {
-        print('请求参数: ' + params.toString());
-      }
-      if (response != null) {
-        print('返回参数: ' + response.toString());
-      }
+      dio.interceptors
+          .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
+        print("\n================== 请求数据 ==========================");
+        print("url = ${options.uri.toString()}");
+        print("headers = ${options.headers}");
+        print("params = ${options.data}");
+      }, onResponse: (Response response) {
+        print("\n================== 响应数据 ==========================");
+        print("code = ${response.statusCode}");
+        print("data = ${response.data}");
+        print("\n");
+      }, onError: (DioError e) {
+        print("\n================== 错误响应数据 ======================");
+        print("type = ${e.type}");
+        print("message = ${e.message}");
+        print("\n");
+      }));
     }
 
     String dataStr = json.encode(response.data);

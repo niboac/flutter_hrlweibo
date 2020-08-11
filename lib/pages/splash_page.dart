@@ -16,17 +16,20 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends State<SplashPage> {
+  _initData() async {
+    await SpUtil.getInstance();
+    Navigator.pop(context);
+    Routes.navigateTo(
+        context, UserUtil.isLogin() ? Routes.indexPage : Routes.loginPage,
+        clearStack: true);
+  }
+
   @override
   void initState() {
     super.initState();
     // App启动时读取Sp数据，需要异步等待Sp初始化完成。
     SpUtil.getInstance();
-    Future.delayed(new Duration(milliseconds: 100), () {
-      Navigator.pop(context);
-      Routes.navigateTo(
-          context, UserUtil.isLogin() ? Routes.indexPage : Routes.loginPage,
-          clearStack: true);
-    });
+    _initData();
   }
 
   @override
