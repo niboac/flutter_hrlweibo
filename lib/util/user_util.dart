@@ -97,7 +97,7 @@ class UserUtil {
     await SpUtil.putString(SP_USER_DESC, mUrl);
   }
 
-  static loginout() {
+  static logout() {
     SpUtil.putBool(SP_IS_ALLOGIN, false);
     SpUtil.putObject(SP_USER_ID, "");
     SpUtil.putString(SP_USER_NAME, "");

@@ -243,7 +243,7 @@ class _SettingPageState extends State<SettingPage> {
                               FlatButton(
                                 child: Text('确定'),
                                 onPressed: () {
-                                  UserUtil.loginout();
+                                  UserUtil.logout();
                                   Navigator.of(context).pop();
                                   Routes.navigateTo(
                                       context, '${Routes.loginPage}',
