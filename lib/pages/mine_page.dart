@@ -13,7 +13,6 @@ class _MinePageState extends State<MinePage> {
   void initState() {
     super.initState();
     if (UserUtil.isLogin()) {
-      print("请求参数的值是:" + UserUtil.getUserInfo().id);
       FormData params = FormData.fromMap({
         'muserId': UserUtil.getUserInfo().id,
         'otheruserId': UserUtil.getUserInfo().id,
@@ -25,13 +24,12 @@ class _MinePageState extends State<MinePage> {
     }
   }
 
-  //TODO
-   @override
+  @override
   void deactivate() {
     super.deactivate();
-     var isTopRoute = ModalRoute.of(context).isCurrent;
+    var isTopRoute = ModalRoute.of(context).isCurrent;
     if (isTopRoute) {
-       if (UserUtil.isLogin()) {
+      if (UserUtil.isLogin()) {
         FormData params = FormData.fromMap({
           'muserId': UserUtil.getUserInfo().id,
           'otheruserId': UserUtil.getUserInfo().id,
@@ -52,7 +50,6 @@ class _MinePageState extends State<MinePage> {
           color: Color(0xffEEEEEE),
           child: Column(
             children: <Widget>[
-              _buildTitle(),
               Expanded(
                   child: ListView(
                 padding: EdgeInsets.only(top: 0),
@@ -67,99 +64,18 @@ class _MinePageState extends State<MinePage> {
     );
   }
 
-  //顶部标题
-  Widget _buildTitle() {
-    return Container(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.only(left: 15),
-                alignment: Alignment.centerLeft,
-                child: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_mine_add_friends.png',
-                  width: 25.0,
-                  height: 25.0,
-                ),
-              ),
-              flex: 1,
-            ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                child: new Text(
-                  '我',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-              ),
-              flex: 1,
-            ),
-            Expanded(
-              child: Container(
-                  margin: EdgeInsets.only(right: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(right: 15),
-                        child: InkWell(
-                          child: Image.asset(
-                            Constant.ASSETS_IMG + 'icon_mine_qrcode_2.png',
-                            width: 25.0,
-                            height: 25.0,
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                      Container(
-                        child: InkWell(
-                          child: Image.asset(
-                            Constant.ASSETS_IMG + 'icon_mine_setting.png',
-                            width: 25.0,
-                            height: 25.0,
-                          ),
-                          onTap: () {
-                            Routes.navigateTo(context, '${Routes.settingPage}');
-                          },
-                        ),
-                      )
-                    ],
-                  )),
-              flex: 1,
-            ),
-          ],
-        ));
-  }
-
   Widget mHeadWidget() {
-    return (UserUtil.getUserInfo() == null ||
+    var image = (UserUtil.getUserInfo() == null ||
             UserUtil.getUserInfo().headurl == null)
-        ? CircleAvatar(
-            //头像半径
-            radius: 25,
-            //头像图片 -> NetworkImage网络图片，AssetImage项目资源包图片, FileImage本地存储图片
-            backgroundImage:
-                AssetImage(Constant.ASSETS_IMG + "ic_avatar_default.png"),
-          )
-        : ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: FadeInImage(
-              fit: BoxFit.cover,
-              placeholder: AssetImage(Constant.ASSETS_IMG + 'img_default.png'),
-              image: NetworkImage(UserUtil.getUserInfo().headurl),
-            ),
-          );
+        ? AssetImage(Constant.ASSETS_IMG + 'ic_avatar_default.png')
+        : NetworkImage(UserUtil.getUserInfo().headurl);
+    return CircleAvatar(radius: 45, backgroundImage: image);
   }
 
   //我的信息
   Widget _buildMyInfo() {
     return Container(
       color: Colors.white,
-      //
-      margin: EdgeInsets.only(top: 10),
       child: Column(
         children: <Widget>[
           Material(
@@ -409,39 +325,7 @@ class _MinePageState extends State<MinePage> {
                         ],
                       ),
                       onTap: () {
-                        print("点击关注");
-                      },
-                    ),
-                  ),
-                  flex: 1,
-                ),
-                Expanded(
-                  child: Material(
-                    //水波纹按压效果
-                    color: Colors.white,
-                    child: InkWell(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(top: 20),
-                            child: Image.asset(
-                              Constant.ASSETS_IMG + "icon_mine_story.png",
-                              width: 30,
-                              height: 30,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 10, top: 10),
-                            child: Text(
-                              '我的故事',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.black),
-                            ),
-                          ),
-                        ],
-                      ),
-                      onTap: () {
-                        print("点击关注");
+                        Routes.navigateTo(context, '${Routes.settingPage}');
                       },
                     ),
                   ),
@@ -672,7 +556,7 @@ class _MinePageState extends State<MinePage> {
                           child: Container(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                '免流量',
+                                '设置',
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 14),
                               ))),
@@ -684,79 +568,15 @@ class _MinePageState extends State<MinePage> {
                     ],
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Routes.navigateTo(context, '${Routes.settingPage}');
+                },
               ),
             ),
             Container(
               height: 0.5,
               color: Color(0xffE2E2E2),
             ),
-            Material(
-              color: Colors.white,
-              child: InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-                  child: Row(
-                    children: <Widget>[
-                      Image.asset(
-                        Constant.ASSETS_IMG + "icon_mine_sport.png",
-                        width: 25,
-                        height: 25,
-                      ),
-                      Expanded(
-                          child: Container(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                '微博运动',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 14),
-                              ))),
-                      Image.asset(
-                        Constant.ASSETS_IMG + "icon_right_arrow.png",
-                        width: 15,
-                        height: 15,
-                      ),
-                    ],
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ),
-            Container(
-              height: 0.5,
-              color: Color(0xffE2E2E2),
-            ),
-            Material(
-              color: Colors.white,
-              child: InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-                  child: Row(
-                    children: <Widget>[
-                      Image.asset(
-                        Constant.ASSETS_IMG + "icon_mine_draft.png",
-                        width: 25,
-                        height: 25,
-                      ),
-                      Expanded(
-                          child: Container(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                '草稿箱',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 14),
-                              ))),
-                      Image.asset(
-                        Constant.ASSETS_IMG + "icon_right_arrow.png",
-                        width: 15,
-                        height: 15,
-                      ),
-                    ],
-                  ),
-                ),
-                onTap: () {},
-              ),
-            )
           ],
         ));
   }

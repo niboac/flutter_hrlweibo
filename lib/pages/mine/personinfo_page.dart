@@ -259,7 +259,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            // title: Text('我是标题'),
             content: Container(
               margin: EdgeInsets.only(top: 10, bottom: 5),
               child: Text('确定不再关注?'),

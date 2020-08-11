@@ -12,13 +12,20 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => getSize();
   Size getSize() {
-    return new Size(100.0, 100.0);
+    return new Size(375.0, 50.0);
   }
 }
 
 class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
+    List actions = this.widget.actions;
+    if (actions != null) {
+      actions.add(SizedBox(
+        width: 10,
+      ));
+    }
+
     return AppBar(
       backgroundColor: Color(0xffFAFAFA),
       leading: IconButton(
@@ -33,7 +40,7 @@ class _MyAppBarState extends State<MyAppBar> {
       ),
       elevation: 0.5,
       centerTitle: true,
-      actions: this.widget.actions,
+      actions: actions,
     );
   }
 }
