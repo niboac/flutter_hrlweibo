@@ -38,7 +38,7 @@ class _PersonInfoPageState extends State<PersonInfoPage>
   void initState() {
     super.initState();
     fetchData();
-    _tabController = TabController(vsync: this, initialIndex: 0, length: 3);
+    _tabController = TabController(vsync: this, initialIndex: 0, length: 2);
   }
 
   @override
@@ -71,12 +71,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
     }, (error) {});
   }
 
-  var mTabs = <String>[
-    '主页'
-        '微博'
-        '相册'
-  ];
-
   /**
    * 模拟下拉刷新
    */
@@ -98,7 +92,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
               child: TabBar(
                 tabs: [
                   Tab(text: '主页'),
-                  Tab(text: '微博'),
                   Tab(text: '相册'),
                 ],
                 controller: _tabController,
@@ -333,20 +326,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                             context),
                         child: SliverAppBar(
-                          leading: new Container(
-                            margin: EdgeInsets.only(top: 20, bottom: 10),
-                            child: isShowBlackTitle
-                                ? Image.asset(
-                                    Constant.ASSETS_IMG +
-                                        'userinfo_icon_back_black.png',
-                                    fit: BoxFit.fitHeight,
-                                  )
-                                : Image.asset(
-                                    Constant.ASSETS_IMG +
-                                        'userinfo_icon_back_white.png',
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                          ),
                           title: isShowBlackTitle ? Text(mUser.nick) : Text(''),
                           centerTitle: true,
                           pinned: true,
@@ -502,38 +481,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                                       ),
                                       Container(
                                         margin: EdgeInsets.only(top: 10),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Container(
-                                              child: Text(
-                                                "关注  " + mUser.followCount,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 14),
-                                              ),
-                                            ),
-                                            Container(
-                                              color: Colors.white,
-                                              height: 10,
-                                              width: 1,
-                                              margin: EdgeInsets.only(
-                                                  left: 15, right: 15),
-                                            ),
-                                            Container(
-                                              child: Text(
-                                                "粉丝 " + mUser.fanCount,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 14),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 10),
                                         child: Text(
                                           "简介: " + mUser.decs,
                                           style: TextStyle(
@@ -547,10 +494,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                               ],
                             ),
                           ),
-
-                          /* bottom: TabBar(
-                        tabs: _tabs.map((String name) => Tab(text: name)).toList(),
-                      ),*/
                         ),
                       ),
                       SliverPersistentHeader(
@@ -565,7 +508,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                     children: [
                       PersonInfoHomeHome(mUser.nick, mUser.decs,
                           mUser.createtime, mUser.gender),
-                      PageInfoWeiBo(),
                       PageInfoPic(),
                     ],
                   ),

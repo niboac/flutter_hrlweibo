@@ -23,7 +23,6 @@ export 'package:flutter_hrlweibo/pages/mine/personinfo_follow.dart';
 export 'package:flutter_hrlweibo/pages/mine/personinfo_follow_tab2.dart';
 export 'package:flutter_hrlweibo/pages/mine/personinfo_page_tabhome.dart';
 export 'package:flutter_hrlweibo/pages/mine/personinfo_page_tabpic.dart';
-export 'package:flutter_hrlweibo/pages/mine/personinfo_page_tabweibo.dart';
 export 'package:flutter_hrlweibo/pages/mine/setting_page.dart';
 export 'package:flutter_hrlweibo/pages/video/video_detail_page.dart';
 export 'package:flutter_hrlweibo/routers/Application.dart';

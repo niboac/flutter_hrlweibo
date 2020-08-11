@@ -4,6 +4,7 @@ import 'package:flutter_hrlweibo/constant/constant.dart';
 import 'package:flutter_hrlweibo/http/service_url.dart';
 import 'package:flutter_hrlweibo/model/MsgComZanModel.dart';
 import 'package:flutter_hrlweibo/util/date_util.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 import 'package:flutter_hrlweibo/widget/weibo/match_text.dart';
 import 'package:flutter_hrlweibo/widget/weibo/parsed_text.dart';
 
@@ -490,38 +491,11 @@ class _MsgCommentPageState extends State<MsgCommentPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: new AppBar(
-          elevation: 0,
-          title: new Text(
-            '所有评论',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          ),
-          leading: IconButton(
-            icon: Image.asset(
-              Constant.ASSETS_IMG + 'icon_back.png',
-              width: 25.0,
-              height: 25.0,
-            ),
-            onPressed: () {},
-          ),
-          backgroundColor: Color(0xffFAFAFA),
-          centerTitle: true,
-          actions: <Widget>[
-            Container(
-              child: Center(
-                child: GestureDetector(
-                    child: Text("设置",
-                        style: TextStyle(fontSize: 16, color: Colors.black)),
-                    onTap: () {}),
-              ),
-              margin: EdgeInsets.only(right: 15),
-            )
-          ],
+        appBar: MyAppBar(
+          title: '所有评论',
         ),
         body: Container(
           child: RefreshIndicator(
-            // key: _refreshIndicatorKey,
-
             onRefresh: getSubDataRefresh,
             child: new ListView.builder(
               itemCount: mZanList.length + 1,

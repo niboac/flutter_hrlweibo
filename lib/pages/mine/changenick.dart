@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/util/toast_util.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
 //修改昵称界面
 class ChangeNickNamePage extends StatefulWidget {
@@ -12,25 +13,14 @@ class ChangeNickNamePage extends StatefulWidget {
 class _ChangeNickNamePageState extends State<ChangeNickNamePage> {
   TextEditingController _mEtController = new TextEditingController();
 
-  //#F3F1F4
   String mInputName = "";
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        title: Text(
-          '修改昵称',
-          style: TextStyle(fontSize: 16),
-        ),
-        elevation: 0.5,
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: '修改昵称',
       ),
       body: Container(
           color: Color(0xffF3F1F4),

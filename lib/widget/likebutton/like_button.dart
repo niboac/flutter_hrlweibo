@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/widget/likebutton/painter/circle_painter.dart';
 import 'package:flutter_hrlweibo/widget/likebutton/painter/bubbles_painter.dart';
- import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_model.dart';
+import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_model.dart';
 import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_util.dart';
 import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_typedef.dart';
 

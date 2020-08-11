@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/util/toast_util.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
 //修改个性签名界面
 class ChangeDescPage extends StatefulWidget {
@@ -18,18 +19,8 @@ class _ChangeDescPageState extends State<ChangeDescPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.chevron_left),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        title: Text(
-          '编辑简介',
-          style: TextStyle(fontSize: 16),
-        ),
-        elevation: 0.5,
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: '编辑简介',
         actions: <Widget>[
           Container(
               margin: EdgeInsets.only(right: 15),

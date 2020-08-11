@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/model/WeiboAtUser.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 class WeiBoPublishAtUserPage extends StatefulWidget {
@@ -134,27 +135,9 @@ class _WeiBoPublishAtUserPageState extends State<WeiBoPublishAtUserPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: PreferredSize(
-          child: AppBar(
-            backgroundColor: Color(0xffffffff),
-            leading: IconButton(
-                iconSize: 30,
-                icon: Image.asset(
-                  Constant.ASSETS_IMG + 'icon_back.png',
-                  width: 23.0,
-                  height: 23.0,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
-            title: Text(
-              '联系人',
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
-            elevation: 0,
-            centerTitle: true,
-          ),
-          preferredSize: Size.fromHeight(50)),
+      appBar: MyAppBar(
+        title: '联系人',
+      ),
       body: Column(
         children: <Widget>[
           Container(

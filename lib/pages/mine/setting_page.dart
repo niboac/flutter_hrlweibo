@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/util/toast_util.dart';
-import 'package:path/path.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
 class SettingPage extends StatefulWidget {
   @override
@@ -153,12 +153,7 @@ class _SettingPageState extends State<SettingPage> {
       //  color: Colors.white,
       child: Material(
           child: Scaffold(
-        appBar: AppBar(
-            title: Text(
-              '设置',
-              style: TextStyle(fontSize: 16),
-            ),
-            elevation: 0.5),
+        appBar: MyAppBar(title: '设置'),
         body: Container(
           color: Color(0xffF2F2F2),
           child: ListView(
@@ -173,20 +168,20 @@ class _SettingPageState extends State<SettingPage> {
                           "userId": UserUtil.getUserInfo().id,
                           "headFile": MultipartFile.fromFileSync(mHeadFile.path)
                         });
-                        request(ServiceUrl.updateHead, formData: formData)
-                            .then((val) {
-                          int code = val['status'];
-                          if (code == 200) {
-                            String mUrl = val['data'];
-                            print("返回的头像的url:${mUrl}");
-                            UserUtil.saveUserHeadUrl(mUrl);
-                            ToastUtil.show('提交成功!');
-                            setState(() {});
-                          } else {
-                            String msg = val['msg'];
-                            ToastUtil.show(msg);
-                          }
-                        });
+                        // request(ServiceUrl.updateHead, formData: formData)
+                        //     .then((val) {
+                        //   int code = val['status'];
+                        //   if (code == 200) {
+                        //     String mUrl = val['data'];
+                        //     print("返回的头像的url:${mUrl}");
+                        //     UserUtil.saveUserHeadUrl(mUrl);
+                        //     ToastUtil.show('提交成功!');
+                        //     setState(() {});
+                        //   } else {
+                        //     String msg = val['msg'];
+                        //     ToastUtil.show(msg);
+                        //   }
+                        // });
                       });
                     });
               }),
@@ -277,7 +272,7 @@ class _SettingPageState extends State<SettingPage> {
                         vertical: 15.0,
                       ),
                       child: Center(
-                        child: Text('退出微博',
+                        child: Text('退出登录',
                             style: TextStyle(fontSize: 14, color: Colors.red)),
                       ),
                     )),

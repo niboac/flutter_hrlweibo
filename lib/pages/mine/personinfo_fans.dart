@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
 class FanPage extends StatefulWidget {
   @override
@@ -22,20 +23,8 @@ class _FanPageState extends State<FanPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xffFAFAFA),
-        leading: IconButton(
-            iconSize: 30,
-            icon: Icon(Icons.chevron_left),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        title: Text(
-          '粉丝',
-          style: TextStyle(fontSize: 16),
-        ),
-        elevation: 0.5,
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: '粉丝',
         actions: <Widget>[
           Container(
               margin: EdgeInsets.only(right: 15),
@@ -66,7 +55,6 @@ class _FanPageState extends State<FanPage> {
                 ],
                 controller: mTabcontroller,
                 //配置控制器
-                //  isScrollable: true,
                 indicatorColor: Colors.deepOrange,
                 indicatorWeight: 2,
                 indicatorSize: TabBarIndicatorSize.label,

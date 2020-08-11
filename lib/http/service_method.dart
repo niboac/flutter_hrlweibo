@@ -7,8 +7,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_hrlweibo/public.dart';
 
 class DioManager {
-  //写一个单例
-  //在 Dart 里，带下划线开头的变量是私有变量
   static DioManager _instance;
 
   static DioManager getInstance() {
@@ -25,7 +23,6 @@ class DioManager {
     dio.options.connectTimeout = 5000;
     dio.options.receiveTimeout = 3000;
     dio.interceptors.add(LogInterceptor(responseBody: true)); //是否开启请求日志
-    //  dio.interceptors.add(CookieManager(CookieJar()));//缓存相关类，具体设置见https://github.com/flutterchina/cookie_jar
   }
 
 //get请求
@@ -38,12 +35,6 @@ class DioManager {
   post(String url, params, Function successCallBack,
       Function errorCallBack) async {
     _requstHttp(url, successCallBack, "post", params, errorCallBack);
-  }
-
-  //post请求
-  postNoParams(
-      String url, Function successCallBack, Function errorCallBack) async {
-    _requstHttp(url, successCallBack, "post", null, errorCallBack);
   }
 
   _requstHttp(String url, Function successCallBack,
@@ -104,42 +95,5 @@ class DioManager {
     if (errorCallBack != null) {
       errorCallBack(error);
     }
-  }
-}
-
-Future request(url, {formData}) async {
-  Response response;
-  Dio dio = new Dio();
-  dio.options.contentType =
-      ContentType.parse("application/json;charset=UTF-8").toString();
-  if (formData == null) {
-    response = await dio.post(url);
-  } else {
-    response = await dio.post(url, data: formData);
-  }
-
-  /// 打印请求相关信息：请求地址、请求方式、请求参数
-  print('请求地址：【' + '  ' + url + '】');
-  print('请求参数：' + formData.toString());
-  dio.interceptors.add(LogInterceptor(responseBody: true)); //是否开启请求日志
-
-  // print('登录接口的返回值:'+response.data);
-
-  if (response.statusCode == 200) {
-    print('响应数据：' + response.toString());
-    /*  var  obj=new Map<String, dynamic>.from(response.data);
-        int code=obj['status'];
-        String msg=obj['msg'];
-        if (code== 200) {
-           Object data=obj['data'];
-           return data;
-        }else{
-          ToastUtil.show(msg);
-        }*/
-    return response.data;
-  } else {
-    print('后端接口出现异常：');
-
-    throw Exception('后端接口出现异常');
   }
 }

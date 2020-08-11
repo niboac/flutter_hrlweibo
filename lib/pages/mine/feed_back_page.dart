@@ -175,20 +175,20 @@ class _FeedBackPageState extends State<FeedBackPage> {
                     "description": _mEtController.text,
                     "files": mSubmitFileList
                   });
-                  request(ServiceUrl.feedback, formData: formData).then((val) {
-                    int code = val['status'];
-                    String msg = val['msg'];
-                    if (code == 200) {
-                      ToastUtil.show('提交成功!');
-                      setState(() {
-                        mFileList.clear();
-                        mSubmitFileList.clear();
-                        _mEtController.clear();
-                      });
-                    } else {
-                      ToastUtil.show(msg);
-                    }
-                  });
+                  // request(ServiceUrl.feedback, formData: formData).then((val) {
+                  //   int code = val['status'];
+                  //   String msg = val['msg'];
+                  //   if (code == 200) {
+                  //     ToastUtil.show('提交成功!');
+                  //     setState(() {
+                  //       mFileList.clear();
+                  //       mSubmitFileList.clear();
+                  //       _mEtController.clear();
+                  //     });
+                  //   } else {
+                  //     ToastUtil.show(msg);
+                  //   }
+                  // });
                 },
               )
             ],

@@ -11,11 +11,11 @@ import 'package:flutter_hrlweibo/model/WeiBoModel.dart';
 import 'package:flutter_hrlweibo/pages/home/weibo_retweet_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/util/date_util.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 import 'package:flutter_hrlweibo/widget/likebutton/like_button.dart';
 import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_model.dart';
 
 import '../../widget/weiboitem/WeiBoDetailTop.dart';
-import 'wd_head.dart';
 import 'weibo_comment_page.dart';
 
 class WeiBoDetailPage extends StatefulWidget {
@@ -161,7 +161,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
             backgroundColor: Colors.white,
             body: Column(
               children: <Widget>[
-                Container(child: WdHeadWidget("微博正文"), color: Colors.white),
+                Container(child: MyAppBar(title: "微博正文")),
                 Expanded(
                   child: new NestedScrollView(
                     //controller: mCommentScrollController,

@@ -4,8 +4,8 @@ import 'package:flutter_hrlweibo/model/WeiBoCommentList.dart';
 import 'package:flutter_hrlweibo/model/WeiBoDetail.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/util/date_util.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
-import 'wd_head.dart';
 import 'weibo_comment_page.dart';
 
 //评论详情界面
@@ -104,7 +104,7 @@ class _WeiBoCommentDetailPageState extends State<WeiBoCommentDetailPage> {
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
-          Container(child: WdHeadWidget("评论详情"), color: Colors.white),
+          Container(child: MyAppBar(title: "评论详情")),
           Expanded(
             child: RefreshIndicator(
               onRefresh: getCommentDataRefresh,

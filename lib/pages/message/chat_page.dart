@@ -11,6 +11,7 @@ import 'package:flutter_hrlweibo/widget/messgae/expanded_viewport.dart';
 import 'package:uuid/uuid.dart';
 
 export 'package:flutter_hrlweibo/widget/messgae/message_item.dart';
+import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -91,37 +92,8 @@ class _ChatPageState extends State<ChatPage> {
       },
       child: Scaffold(
         appBar: PreferredSize(
-            child: AppBar(
-              backgroundColor: Color(0xffffffff),
-              leading: IconButton(
-                  iconSize: 30,
-                  icon: Image.asset(
-                    Constant.ASSETS_IMG + 'icon_back.png',
-                    width: 23.0,
-                    height: 23.0,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-              title: Text(
-                '用户名',
-                style: TextStyle(fontSize: 16, color: Colors.black),
-              ),
-              elevation: 0,
-              centerTitle: true,
-              actions: <Widget>[
-                Container(
-                    margin: EdgeInsets.only(right: 15),
-                    child: InkWell(
-                      child: Center(
-                        child: Text(
-                          '设置',
-                          style: TextStyle(fontSize: 14, color: Colors.black),
-                        ),
-                      ),
-                      onTap: () {},
-                    )),
-              ],
+            child: MyAppBar(
+              title: '用户名',
             ),
             preferredSize: Size.fromHeight(50)),
         resizeToAvoidBottomInset: false,
@@ -129,10 +101,6 @@ class _ChatPageState extends State<ChatPage> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              /*   Expanded(
-          child:Column(
-            children: <Widget>[*/
-
               Expanded(
                 child: GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -193,7 +161,7 @@ class _ChatPageState extends State<ChatPage> {
                                       }
                                     },
                                   );
-                                   return mChatItem;
+                                  return mChatItem;
                                 },
                                 childCount: mlistMessage.length,
                               ),
