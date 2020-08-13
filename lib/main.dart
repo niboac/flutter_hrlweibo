@@ -6,8 +6,10 @@ import 'package:flutter_hrlweibo/pages/home_page.dart';
 import 'package:flutter_hrlweibo/pages/splash_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
 
+import 'Global.dart';
+
 void main() {
-  runApp(new MyApp());
+  Global.init().then((e) => runApp(MyApp()));
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
       systemNavigationBarColor: Color(0xffffffff),

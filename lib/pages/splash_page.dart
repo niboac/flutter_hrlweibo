@@ -38,38 +38,23 @@ class SplashPageState extends State<SplashPage> {
         backgroundColor: Colors.white,
         body: new Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(top: 100),
-                    child: Image.asset(
-                      Constant.ASSETS_IMG + 'welcome-slogan.jpg',
-                      width: 200.0,
-                      height: 100.0,
-                    ),
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      Constant.ASSETS_IMG + 'welcome-logo.png',
-                      width: 100.0,
-                      height: 100.0,
-                    ),
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ],
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(top: 100),
+              child: Image.asset(
+                Constant.ASSETS_IMG + 'welcome-slogan.jpg',
+                width: 200.0,
+                height: 100.0,
               ),
-            )
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Image.asset(
+                Constant.ASSETS_IMG + 'welcome-logo.png',
+                width: 100.0,
+                height: 100.0,
+              ),
+            ),
           ],
         ));
   }

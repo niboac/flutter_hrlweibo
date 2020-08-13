@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:fluwx/fluwx.dart';
 
 import 'home/weibo_follow_page.dart';
 import 'home/weibo_hot_page.dart';
@@ -13,6 +14,10 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    registerWxApi(
+        appId: "wxfaece37f3871f706",
+        universalLink: "https://shiyouhui.com/link/");
+
     return Scaffold(
       body: Column(
         children: <Widget>[

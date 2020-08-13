@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/model/WeiBoModel.dart';
 import 'package:flutter_hrlweibo/constant/constant.dart';
+import 'package:flutter_hrlweibo/widget/share/shareWechatBtn.dart';
 
 class Share extends StatefulWidget {
   final WeiBoModel mModel;
@@ -28,16 +29,7 @@ Widget _shareRow(BuildContext context, WeiBoModel weiboItem) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text('分享到'),
-        InkWell(
-          onTap: () {},
-          child: Container(
-              margin: EdgeInsets.only(left: 20),
-              child: Image.asset(
-                Constant.ASSETS_IMG + 'share_group_wx.png',
-                width: 30.0,
-                height: 30.0,
-              )),
-        ),
+        ShareWechatBtn(title: '微信分享'),
         InkWell(
           onTap: () {},
           child: Container(
