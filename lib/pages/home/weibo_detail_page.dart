@@ -161,7 +161,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
             backgroundColor: Colors.white,
             body: Column(
               children: <Widget>[
-                Container(child: MyAppBar(title: "微博正文")),
+                Container(child: MyAppBar(title: "正文")),
                 Expanded(
                   child: NestedScrollView(
                     //controller: mCommentScrollController,

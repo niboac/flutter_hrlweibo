@@ -107,7 +107,7 @@ class _PersonInfoHomeHomeState extends State<PersonInfoHomeHome> {
               margin: EdgeInsets.only(top: 15),
               padding: EdgeInsets.only(top: 12.0, bottom: 12, left: 15),
               child: Text(
-                '查看全部微博',
+                '查看全部动态',
                 style: TextStyle(color: Color(0xff666666), fontSize: 14),
               ),
             ),

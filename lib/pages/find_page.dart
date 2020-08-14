@@ -275,7 +275,7 @@ class _FindPageState extends State<FindPage> {
                                 height: 25.0,
                               ),
                               Text(
-                                '微博热搜',
+                                '热搜',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,

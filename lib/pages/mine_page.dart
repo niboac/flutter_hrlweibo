@@ -206,7 +206,7 @@ class _MinePageState extends State<MinePage> {
                         Container(
                           margin: EdgeInsets.only(bottom: 10),
                           child: Text(
-                            '微博',
+                            '动态',
                             style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
@@ -418,7 +418,7 @@ class _MinePageState extends State<MinePage> {
                           Container(
                             margin: EdgeInsets.only(bottom: 10, top: 10),
                             child: Text(
-                              '微博钱包',
+                              '钱包',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),
@@ -450,7 +450,7 @@ class _MinePageState extends State<MinePage> {
                           Container(
                             margin: EdgeInsets.only(bottom: 10, top: 10),
                             child: Text(
-                              '微博优选',
+                              '优选',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),

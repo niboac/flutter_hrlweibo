@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/public.dart';
-import 'package:flutter_hrlweibo/util/toast_util.dart';
 import 'package:flutter_hrlweibo/widget/MyAppBar.dart';
 
 class SettingPage extends StatefulWidget {
@@ -221,7 +220,7 @@ class _SettingPageState extends State<SettingPage> {
                   Routes.navigateTo(context, '${Routes.feedbackPage}');
                 },
               ),
-              SettingCommon(title: "关于微博", content: ""),
+              SettingCommon(title: "关于我们", content: ""),
               SettingCommon(title: "清理缓存", content: ""),
               Container(
                 height: 30,

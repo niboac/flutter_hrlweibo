@@ -7,7 +7,6 @@ import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/widget/extend_textfield/my_special_text_span_builder.dart';
 import 'package:flutter_hrlweibo/widget/messgae/emoji_widget.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
-import 'package:path/path.dart' as path;
 
 //发布微博界面
 class WeiBoPublishPage extends StatefulWidget {
@@ -134,7 +133,7 @@ class _WeiBoPublishPageState extends State<WeiBoPublishPage> {
               margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Column(
                 children: <Widget>[
-                  Text('发微博',
+                  Text('发动态',
                       style: TextStyle(fontSize: 16, color: Colors.black)),
                   Text(UserUtil.getUserInfo().nick,
                       style: TextStyle(fontSize: 12, color: Colors.grey))

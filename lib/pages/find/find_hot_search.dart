@@ -166,7 +166,7 @@ class _HotSearchPageState extends State<HotSearchPage> {
                                 fit: BoxFit.fitHeight,
                               ),
                       ),
-                      title: isShowBlackTitle ? Text('微博热搜') : Text(''),
+                      title: isShowBlackTitle ? Text('热搜') : Text(''),
                       centerTitle: true,
                       floating: false,
                       pinned: true,

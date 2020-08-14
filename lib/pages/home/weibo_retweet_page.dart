@@ -117,7 +117,7 @@ class _RetWeetPageState extends State<RetWeetPage> {
               margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Column(
                 children: <Widget>[
-                  Text('转发微博',
+                  Text('转发',
                       style: TextStyle(fontSize: 16, color: Colors.black)),
                   Text(UserUtil.getUserInfo().nick,
                       style: TextStyle(fontSize: 12, color: Colors.grey))
