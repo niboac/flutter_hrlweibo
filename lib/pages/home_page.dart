@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       body: Column(
         children: <Widget>[
-          new Expanded(child: new TabBarWidget()),
+          Expanded(child: TabBarWidget()),
         ],
       ),
     );
@@ -72,7 +72,6 @@ class _TabBarWidgetState extends State<TabBarWidget> {
               Container(
                 height: 50,
                 color: Color(0xffF9F9F9),
-                //  color:Colors.red,
                 alignment: Alignment.center,
                 child: TabBar(
                     isScrollable: true,
@@ -89,18 +88,18 @@ class _TabBarWidgetState extends State<TabBarWidget> {
                     indicatorSize: TabBarIndicatorSize.label,
                     controller: _controller,
                     tabs: [
-                      new Tab(
+                      Tab(
                         text: _tabValues[0],
                       ),
-                      new Tab(
+                      Tab(
                         text: _tabValues[1],
                       ),
                     ]),
               ),
-              new Align(
+              Align(
                 alignment: Alignment.topRight,
-                child: new IconButton(
-                  icon: new Image.asset("assets/images/ic_main_add.png",
+                child: IconButton(
+                  icon: Image.asset("assets/images/ic_main_add.png",
                       width: 40.0, height: 40.0),
                   onPressed: () {
                     Routes.navigateTo(context, '${Routes.weiboPublishPage}');
@@ -109,10 +108,10 @@ class _TabBarWidgetState extends State<TabBarWidget> {
               ),
             ],
           ),
-          new Expanded(
+          Expanded(
             child: TabBarView(
               controller: _controller,
-              children: <Widget>[new WeiBoFollowPage(), new WeiBoHotPage()],
+              children: <Widget>[WeiBoFollowPage(), WeiBoHotPage()],
             ),
           )
         ],

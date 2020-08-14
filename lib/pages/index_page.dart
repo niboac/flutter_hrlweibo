@@ -4,9 +4,9 @@ import 'package:flutter_hrlweibo/pages/find_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:lottie/lottie.dart';
 
+import '../widget/iconfont.dart';
 import 'home_page.dart';
 import 'mine_page.dart';
-import '../widget/iconfont.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -27,7 +27,6 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(vsync: this);
   }
 

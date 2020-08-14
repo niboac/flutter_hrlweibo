@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hrlweibo/pages/home_page.dart';
 import 'package:flutter_hrlweibo/pages/splash_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
 

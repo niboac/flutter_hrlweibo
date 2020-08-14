@@ -113,7 +113,7 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
     super.initState();
     streamSubscription =
         widget.shouldTriggerChange.listen((_) => hideBottomLayout());
-     WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     //   focusNode.addListener(onFocus);
 //    widget.controller.addListener(_onInputChange);
     mEditController.addListener(() {
@@ -288,14 +288,8 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
       child: Stack(
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          Offstage(
-            child: voiceButton,
-            offstage: mCurrentType != "voice",
-          ),
-          Offstage(
-            child: inputButton,
-            offstage: mCurrentType == "voice",
-          ),
+          voiceButton.intoOffstage(offstage: mCurrentType != "voice"),
+          inputButton.intoOffstage(offstage: mCurrentType == "voice"),
         ],
       ),
     );
@@ -460,7 +454,7 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
       return Visibility(
         visible: mEmojiLayoutShow,
         child: EmojiWidget(onEmojiClockBack: (value) {
-           if (0 == value) {
+          if (0 == value) {
             mEditController.clear();
           } else {
             mEditController.text =

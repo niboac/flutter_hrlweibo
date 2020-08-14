@@ -1,8 +1,9 @@
 export 'dart:async';
 export 'dart:convert';
 export 'dart:io';
+export 'package:widget_chain/widget_chain.dart';
+
 export 'package:fluro/fluro.dart';
-export 'package:flutter_hrlweibo/constant/constant.dart';
 export 'package:flutter_hrlweibo/constant/constant.dart';
 export 'package:flutter_hrlweibo/event/ChangeInfoEvent.dart';
 export 'package:flutter_hrlweibo/http/service_method.dart';

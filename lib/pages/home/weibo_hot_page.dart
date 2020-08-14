@@ -8,7 +8,7 @@ class WeiBoHotPage extends StatefulWidget {
 }
 
 class _WeiBoHotPageState extends State<WeiBoHotPage> {
-  final List<String> _tabValues = ['推荐', '附近', '榜单', '明星', '搞笑', '社会', '测试'];
+  final List<String> _tabValues = ['推荐', '附近', '榜单', '明星', '搞笑', '测试'];
   TabController _controller;
 
   @override
@@ -34,9 +34,7 @@ class _WeiBoHotPageState extends State<WeiBoHotPage> {
             children: <Widget>[
               Container(
                 height: 45,
-                // margin: EdgeInsets.only(top: 40.0),
                 color: Color(0xffffffff),
-                //  color:Colors.red,
                 alignment: Alignment.center,
                 child: TabBar(
                     isScrollable: true,
@@ -48,29 +46,11 @@ class _WeiBoHotPageState extends State<WeiBoHotPage> {
                     unselectedLabelStyle: TextStyle(fontSize: 16.0),
                     indicatorSize: TabBarIndicatorSize.label,
                     controller: _controller,
-                    tabs: [
-                      new Tab(
-                        text: _tabValues[0],
-                      ),
-                      new Tab(
-                        text: _tabValues[1],
-                      ),
-                      new Tab(
-                        text: _tabValues[2],
-                      ),
-                      new Tab(
-                        text: _tabValues[3],
-                      ),
-                      new Tab(
-                        text: _tabValues[4],
-                      ),
-                      new Tab(
-                        text: _tabValues[5],
-                      ),
-                      new Tab(
-                        text: _tabValues[6],
-                      ),
-                    ]),
+                    tabs: _tabValues
+                        .map((e) => Tab(
+                              text: e,
+                            ))
+                        .toList()),
               ),
             ],
           ),
@@ -78,21 +58,12 @@ class _WeiBoHotPageState extends State<WeiBoHotPage> {
             height: 0.5,
             color: Color(0xffBECBC2),
           ),
-          new Expanded(
+          Expanded(
             child: TabBarView(
               controller: _controller,
-              children: <Widget>[
-                new WeiBoHomeListPager(mCatId: "1"),
-                new WeiBoHomeListPager(mCatId: "2"),
-                new WeiBoHomeListPager(mCatId: "3"),
-                new WeiBoHomeListPager(mCatId: "4"),
-                new WeiBoHomeListPager(mCatId: "5"),
-                Center(
-                  child: Text("暂无数据"),
-                ),
-                new WeiBoHomeListPager(mCatId: "10"),
-                //  new WeiBoHomeListPager(),
-              ],
+              children: [1, 2, 3, 4, 5, 10]
+                  .map((e) => WeiBoHomeListPager(mCatId: e.toString()))
+                  .toList(),
             ),
           )
         ],

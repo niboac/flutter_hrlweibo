@@ -34,7 +34,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
   ];
   TabController _controller;
   WeiBoModel mWeiboTopData;
-  ScrollController mCommentScrollController = new ScrollController();
+  ScrollController mCommentScrollController = ScrollController();
   List<Comment> mCommentList = [];
   List<Forward> mForwardList = [];
   bool isCommentloadingMore = false; //是否显示加载中
@@ -115,7 +115,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
   }
 
   Future<bool> onLikeButtonTapped(bool isLiked, WeiBoModel weiboItem) async {
-    final Completer<bool> completer = new Completer<bool>();
+    final Completer<bool> completer = Completer<bool>();
 
     FormData formData = FormData.fromMap({
       "weiboId": weiboItem.weiboId,
@@ -163,7 +163,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
               children: <Widget>[
                 Container(child: MyAppBar(title: "微博正文")),
                 Expanded(
-                  child: new NestedScrollView(
+                  child: NestedScrollView(
                     //controller: mCommentScrollController,
                     headerSliverBuilder: (context, bool) {
                       return [
@@ -216,12 +216,12 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
                                                   TabBarIndicatorSize.label,
                                               controller: _controller,
                                               tabs: [
-                                                new Tab(
+                                                Tab(
                                                   text: _tabValues[0] +
                                                       widget.mModel.zhuanfaNum
                                                           .toString(),
                                                 ),
-                                                new Tab(
+                                                Tab(
                                                   text: _tabValues[1] +
                                                       widget.mModel.commentNum
                                                           .toString(),
@@ -261,11 +261,11 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
                     body: TabBarView(
                       controller: _controller,
                       children: <Widget>[
-                        /*      new ListView.builder(
-                          padding: new EdgeInsets.all(5.0),
+                        /*      ListView.builder(
+                          padding: EdgeInsets.all(5.0),
                           itemExtent: 50.0,
                           itemBuilder: (BuildContext context, int index) {
-                            return new Text("text $index");
+                            return Text("text $index");
                           },
                           itemCount: 50,
                         ),*/
@@ -286,9 +286,9 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
 
   Widget mForwardWidget() {
     return NotificationListener<ScrollNotification>(
-      child: new ListView.builder(
+      child: ListView.builder(
         physics: ClampingScrollPhysics(),
-        padding: new EdgeInsets.all(0.0),
+        padding: EdgeInsets.all(0.0),
         //   itemExtent: 50.0,
         itemBuilder: (BuildContext context, int index) {
           return mForwardItem(context, index);
@@ -326,8 +326,8 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
 
   Widget mCommentWidget() {
     return NotificationListener<ScrollNotification>(
-      child: new ListView.builder(
-        padding: new EdgeInsets.all(0.0),
+      child: ListView.builder(
+        padding: EdgeInsets.all(0.0),
         //   itemExtent: 50.0,
         itemBuilder: (BuildContext context, int index) {
           return mCommentItem(context, index);
@@ -444,7 +444,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
                     ),
                     Center(
                       child: mForwardList[index].fromuserismember == 0
-                          ? new Container()
+                          ? Container()
                           : Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Image.asset(
@@ -499,7 +499,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          new Container(
+          Container(
             margin: EdgeInsets.only(right: 15, top: 10, bottom: 10),
             alignment: Alignment.centerRight,
             child: Row(
@@ -528,7 +528,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
     Widget mCommentReplyWidget;
     if (mCommentList[index - 1].commentreplynum == 0) {
     } else if (mCommentList[index - 1].commentreplynum == 1) {
-      mCommentReplyWidget = new Container(
+      mCommentReplyWidget = Container(
         padding: EdgeInsets.all(5),
         child: RichText(
             text: TextSpan(
@@ -542,7 +542,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
             ])),
       );
     } else if (mCommentList[index - 1].commentreplynum == 2) {
-      mCommentReplyWidget = new Container(
+      mCommentReplyWidget = Container(
           padding: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -584,7 +584,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
             ],
           ));
     } else {
-      mCommentReplyWidget = new Container(
+      mCommentReplyWidget = Container(
         padding: EdgeInsets.all(5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -717,7 +717,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
                     ),
                     Center(
                       child: mCommentList[index - 1].fromuserismember == 0
-                          ? new Container()
+                          ? Container()
                           : Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Image.asset(
@@ -752,7 +752,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                             //背景
                             color: Color(0xffF7F7F7),
                             //设置四周圆角 角度
@@ -859,9 +859,9 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
               ],
             )),
           ))
-        : new Container(
+        : Container(
             child: isForwarhasMore
-                ? new Container()
+                ? Container()
                 : Center(
                     child: Container(
                         margin: EdgeInsets.only(top: 5, bottom: 5),
@@ -895,9 +895,9 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
               ],
             )),
           ))
-        : new Container(
+        : Container(
             child: isCommenthasMore
-                ? new Container()
+                ? Container()
                 : Center(
                     child: Container(
                         margin: EdgeInsets.only(top: 5, bottom: 5),
@@ -915,7 +915,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
       //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        new Flexible(
+        Flexible(
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
@@ -948,7 +948,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
           width: 1.0,
           color: Colors.black12,
         ),
-        new Flexible(
+        Flexible(
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(PageRouteBuilder(
@@ -987,7 +987,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> {
           width: 1.0,
           color: Colors.black12,
         ),
-        new Flexible(
+        Flexible(
           child: LikeButton(
             isLiked: weiboItem.zanStatus == 1,
             onTap: (bool isLiked) {
@@ -1058,7 +1058,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return new SizedBox.expand(child: child);
+    return SizedBox.expand(child: child);
   }
 
   @override

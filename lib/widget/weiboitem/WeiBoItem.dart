@@ -1,16 +1,20 @@
+import "package:dio/dio.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/constant/constant.dart';
 import 'package:flutter_hrlweibo/http/service_method.dart';
 import 'package:flutter_hrlweibo/model/WeiBoModel.dart';
+import 'package:flutter_hrlweibo/public.dart';
 import 'package:flutter_hrlweibo/util/date_util.dart';
+import 'package:flutter_hrlweibo/widget/likebutton/like_button.dart';
+import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_model.dart';
 import 'package:flutter_hrlweibo/widget/video/video_widget.dart';
 import 'package:flutter_hrlweibo/widget/weibo/match_text.dart';
 import 'package:flutter_hrlweibo/widget/weibo/parsed_text.dart';
+import 'package:flutter_hrlweibo/widget/weiboitem/ViewPhoto.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+
 import '../../pages/home/weibo_retweet_page.dart';
-import 'package:flutter_hrlweibo/widget/likebutton/like_button.dart';
-import 'package:flutter_hrlweibo/widget/likebutton/utils/like_button_model.dart';
-import 'package:flutter_hrlweibo/public.dart';
-import "package:dio/dio.dart";
 
 class WeiBoItemWidget extends StatelessWidget {
   WeiBoModel mModel;
@@ -44,7 +48,7 @@ Widget _wholeItemWidget(
           visible: !isDetail,
           child: Column(
             children: <Widget>[
-              new Container(
+              Container(
                 margin: EdgeInsets.only(
                     left: 15,
                     right: 15,
@@ -54,7 +58,7 @@ Widget _wholeItemWidget(
                 color: Color(0xffDBDBDB),
               ), //下划线
               _RePraCom(context, weiboItem),
-              new Container(
+              Container(
                 margin: EdgeInsets.only(top: 10),
                 height: 12,
                 color: Color(0xffEFEFEF),
@@ -168,12 +172,12 @@ Widget _authorRow(BuildContext context, WeiBoModel weiboItem) {
         ),
         SizedBox(
           child: Container(
-            padding: new EdgeInsets.only(
-                top: 1.0, bottom: 1.0, left: 8.0, right: 8.0),
-            decoration: new BoxDecoration(
+            padding:
+                EdgeInsets.only(top: 1.0, bottom: 1.0, left: 8.0, right: 8.0),
+            decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: Colors.orange),
-              borderRadius: new BorderRadius.circular(22.0),
+              borderRadius: BorderRadius.circular(22.0),
             ),
             child: Text(
               '+ 关注',
@@ -244,8 +248,6 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
               }),
           MatchText(
               pattern: '#.*?#',
-              //       pattern: r"\B#+([\w]+)\B#",
-              //   pattern: r"\[(#[^:]+):([^#]+)\]",
               style: TextStyle(
                 color: Color(0xff5B778D),
                 fontSize: 15,
@@ -279,8 +281,6 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
               }),
           MatchText(
             pattern: '(\\[/).*?(\\])',
-            //       pattern: r"\B#+([\w]+)\B#",
-            //   pattern: r"\[(#[^:]+):([^#]+)\]",
             style: TextStyle(
               fontSize: 15,
             ),
@@ -301,8 +301,6 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
           ),
           MatchText(
               pattern: '全文',
-              //       pattern: r"\B#+([\w]+)\B#",
-              //   pattern: r"\[(#[^:]+):([^#]+)\]",
               style: TextStyle(
                 color: Color(0xff5B778D),
                 fontSize: 15,
@@ -316,19 +314,7 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
               onTap: (display, value) async {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: new Text("Mentions clicked"),
-                      content: new Text("点击全文了"),
-                      actions: <Widget>[
-                        // usually buttons at the bottom of the dialog
-                        new FlatButton(
-                          child: new Text("Close"),
-                          onPressed: () {},
-                        ),
-                      ],
-                    );
-                  },
+                  builder: (BuildContext context) {},
                 );
               }),
         ],
@@ -379,7 +365,7 @@ Widget _RePraCom(BuildContext context, WeiBoModel weiboItem) {
     //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
-      new Flexible(
+      Flexible(
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
@@ -407,7 +393,7 @@ Widget _RePraCom(BuildContext context, WeiBoModel weiboItem) {
         ),
         flex: 1,
       ),
-      new Flexible(
+      Flexible(
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
@@ -435,7 +421,7 @@ Widget _RePraCom(BuildContext context, WeiBoModel weiboItem) {
         ),
         flex: 1,
       ),
-      new Flexible(
+      Flexible(
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
@@ -501,7 +487,7 @@ Widget _RePraCom(BuildContext context, WeiBoModel weiboItem) {
 }
 
 Future<bool> onLikeButtonTapped(bool isLiked, WeiBoModel weiboItem) async {
-  final Completer<bool> completer = new Completer<bool>();
+  final Completer<bool> completer = Completer<bool>();
 
   FormData formData = FormData.fromMap({
     "weiboId": weiboItem.weiboId,
@@ -592,7 +578,9 @@ Widget _NineGrid(BuildContext context, List<String> picUrlList) {
                 maxHeight: 250, maxWidth: 250, minHeight: 200, minWidth: 200),
             child: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: Image.network(picList[index], fit: BoxFit.cover),
+              child: Image.network(picList[index], fit: BoxFit.cover).onTap(() {
+                toPhotoView(context, picList, index);
+              }),
             ),
           ));
         } else {
@@ -620,15 +608,15 @@ Widget _NineGrid(BuildContext context, List<String> picUrlList) {
             }
 
             rowArr.add(Container(
-              child: Container(
-                margin: mMargin,
-                child: Image.network(
-                  picList[index],
-                  fit: BoxFit.cover,
-                  width: itemW,
-                  height: itemH,
-                ),
-              ),
+              margin: mMargin,
+              child: Image.network(
+                picList[index],
+                fit: BoxFit.cover,
+                width: itemW,
+                height: itemH,
+              ).onTap(() {
+                toPhotoView(context, picList, index);
+              }),
             ));
           }
         }
@@ -650,6 +638,115 @@ Widget _NineGrid(BuildContext context, List<String> picUrlList) {
   } else {
     return Container(
       height: 0,
+    );
+  }
+}
+
+void toPhotoView(BuildContext context, List<String> picList, num index) {
+  List galleryItems =
+      picList.map((e) => GalleryExampleItem(id: '1', resource: e)).toList();
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => GalleryPhotoViewWrapper(
+        galleryItems: galleryItems,
+        backgroundDecoration: const BoxDecoration(
+          color: Colors.black,
+        ),
+        initialIndex: index,
+        scrollDirection: Axis.horizontal,
+      ),
+    ),
+  );
+}
+
+class GalleryPhotoViewWrapper extends StatefulWidget {
+  GalleryPhotoViewWrapper({
+    this.loadingBuilder,
+    this.backgroundDecoration,
+    this.minScale,
+    this.maxScale,
+    this.initialIndex,
+    @required this.galleryItems,
+    this.scrollDirection = Axis.horizontal,
+  }) : pageController = PageController(initialPage: initialIndex);
+
+  final LoadingBuilder loadingBuilder;
+  final Decoration backgroundDecoration;
+  final dynamic minScale;
+  final dynamic maxScale;
+  final int initialIndex;
+  final PageController pageController;
+  final List<GalleryExampleItem> galleryItems;
+  final Axis scrollDirection;
+
+  @override
+  State<StatefulWidget> createState() {
+    return _GalleryPhotoViewWrapperState();
+  }
+}
+
+class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
+  int currentIndex;
+
+  @override
+  void initState() {
+    currentIndex = widget.initialIndex;
+    super.initState();
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: widget.backgroundDecoration,
+        constraints: BoxConstraints.expand(
+          height: MediaQuery.of(context).size.height,
+        ),
+        child: Stack(
+          alignment: Alignment.bottomRight,
+          children: <Widget>[
+            PhotoViewGallery.builder(
+              scrollPhysics: const BouncingScrollPhysics(),
+              builder: _buildItem,
+              itemCount: widget.galleryItems.length,
+              loadingBuilder: widget.loadingBuilder,
+              backgroundDecoration: widget.backgroundDecoration,
+              pageController: widget.pageController,
+              onPageChanged: onPageChanged,
+              scrollDirection: widget.scrollDirection,
+            ),
+            Container(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                "图 ${currentIndex + 1}",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.0,
+                  decoration: null,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  PhotoViewGalleryPageOptions _buildItem(BuildContext context, int index) {
+    final GalleryExampleItem item = widget.galleryItems[index];
+    return PhotoViewGalleryPageOptions(
+      imageProvider: NetworkImage(item.resource),
+      initialScale: PhotoViewComputedScale.contained,
+      minScale: PhotoViewComputedScale.contained * (0.5 + index / 10),
+      maxScale: PhotoViewComputedScale.covered * 1.1,
+      heroAttributes: PhotoViewHeroAttributes(tag: item.id),
     );
   }
 }
