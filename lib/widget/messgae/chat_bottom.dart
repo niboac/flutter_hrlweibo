@@ -283,13 +283,13 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
       ),
     );
 
+    var btn = mCurrentType != "voice" ? voiceButton : inputButton;
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10),
       child: Stack(
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          voiceButton.intoOffstage(offstage: mCurrentType != "voice"),
-          inputButton.intoOffstage(offstage: mCurrentType == "voice"),
+          btn,
         ],
       ),
     );
@@ -300,7 +300,7 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
   }
 
   Widget mEmojiButton() {
-    return new ImageButton(
+    return ImageButton(
       onPressed: () {
         this.mCurrentType = "emoji";
         _getWH();
@@ -312,7 +312,7 @@ class _ChatBottomInputWidgetState extends State<ChatBottomInputWidget>
 
         _getWH();
       },
-      image: new AssetImage(Constant.ASSETS_IMG + "ic_emoji.png"),
+      image: AssetImage(Constant.ASSETS_IMG + "ic_emoji.png"),
     );
   }
 

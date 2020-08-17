@@ -1,7 +1,6 @@
 export 'dart:async';
 export 'dart:convert';
 export 'dart:io';
-export 'package:widget_chain/widget_chain.dart';
 
 export 'package:fluro/fluro.dart';
 export 'package:flutter_hrlweibo/constant/constant.dart';
@@ -34,3 +33,5 @@ export 'package:flutter_hrlweibo/util/toast_util.dart';
 export 'package:flutter_hrlweibo/util/user_util.dart';
 export 'package:flutter_hrlweibo/widget/head_choose_widget.dart';
 export 'package:image_picker/image_picker.dart';
+export 'package:styled_widget/styled_widget.dart';
+export 'package:widget_chain/widget_chain.dart';
