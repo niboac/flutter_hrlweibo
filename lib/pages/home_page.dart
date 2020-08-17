@@ -14,10 +14,6 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    registerWxApi(
-        appId: "wxfaece37f3871f706",
-        universalLink: "https://shiyouhui.com/link/");
-
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -53,6 +49,9 @@ class _TabBarWidgetState extends State<TabBarWidget> {
       length: _tabValues.length, //Tab页数量
       vsync: ScrollableState(), //动画效果的异步处理
     );
+    registerWxApi(
+        appId: "wxfaece37f3871f706",
+        universalLink: "https://shiyouhui.com/link/");
   }
 
   @override
@@ -63,59 +62,56 @@ class _TabBarWidgetState extends State<TabBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                height: 50,
-                color: Color(0xffF9F9F9),
-                alignment: Alignment.center,
-                child: TabBar(
-                    isScrollable: true,
-                    indicatorColor: Color(0xffFF3700),
-                    indicator: UnderlineTabIndicator(
-                        borderSide:
-                            BorderSide(color: Color(0xffFF3700), width: 2),
-                        insets: EdgeInsets.only(bottom: 7)),
-                    labelColor: Color(0xff333333),
-                    unselectedLabelColor: Color(0xff666666),
-                    labelStyle:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
-                    unselectedLabelStyle: TextStyle(fontSize: 16.0),
-                    indicatorSize: TabBarIndicatorSize.label,
-                    controller: _controller,
-                    tabs: [
-                      Tab(
-                        text: _tabValues[0],
-                      ),
-                      Tab(
-                        text: _tabValues[1],
-                      ),
-                    ]),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: Image.asset("assets/images/ic_main_add.png",
-                      width: 40.0, height: 40.0),
-                  onPressed: () {
-                    Routes.navigateTo(context, '${Routes.weiboPublishPage}');
-                  },
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _controller,
-              children: <Widget>[WeiBoFollowPage(), WeiBoHotPage()],
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            Container(
+              height: 50,
+              color: Color(0xffF9F9F9),
+              alignment: Alignment.center,
+              child: TabBar(
+                  isScrollable: true,
+                  indicatorColor: Color(0xffFF3700),
+                  indicator: UnderlineTabIndicator(
+                      borderSide:
+                          BorderSide(color: Color(0xffFF3700), width: 2),
+                      insets: EdgeInsets.only(bottom: 7)),
+                  labelColor: Color(0xff333333),
+                  unselectedLabelColor: Color(0xff666666),
+                  labelStyle:
+                      TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
+                  unselectedLabelStyle: TextStyle(fontSize: 16.0),
+                  indicatorSize: TabBarIndicatorSize.label,
+                  controller: _controller,
+                  tabs: [
+                    Tab(
+                      text: _tabValues[0],
+                    ),
+                    Tab(
+                      text: _tabValues[1],
+                    ),
+                  ]),
             ),
-          )
-        ],
-      ),
-    ));
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: Image.asset("assets/images/ic_main_add.png",
+                    width: 40.0, height: 40.0),
+                onPressed: () {
+                  Routes.navigateTo(context, '${Routes.weiboPublishPage}');
+                },
+              ),
+            ),
+          ],
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: _controller,
+            children: <Widget>[WeiBoFollowPage(), WeiBoHotPage()],
+          ),
+        )
+      ],
+    );
   }
 }

@@ -20,7 +20,7 @@ class WeiBoHomeListPager extends StatefulWidget {
 
 class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
     with AutomaticKeepAliveClientMixin {
-  bool isRefreshloading = true;
+  bool isRefreshloading = false;
   bool isloadingMore = false; //是否显示加载中
   bool ishasMore = true; //是否还有更多
   num mCurPage = 1;
@@ -140,9 +140,9 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
               ],
             )),
           ))
-        : new Container(
+        : Container(
             child: ishasMore
-                ? new Container()
+                ? Container()
                 : Center(
                     child: Container(
                         margin: EdgeInsets.only(top: 5, bottom: 5),
@@ -161,24 +161,20 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: LoadingContainer(
-        isLoading: isRefreshloading,
-        child: RefreshIndicator(
-          // key: _refreshIndicatorKey,
-
-          onRefresh: getSubDataRefresh,
-          child: new ListView.builder(
-            itemCount: hotContentList.length + 1,
-            itemBuilder: (context, index) {
-              if (index == hotContentList.length) {
-                return _buildLoadMore();
-              } else {
-                return getContentItem(context, index, hotContentList);
-              }
-            },
-            controller: _scrollController,
-          ),
+    return LoadingContainer(
+      isLoading: isRefreshloading,
+      child: RefreshIndicator(
+        onRefresh: getSubDataRefresh,
+        child: ListView.builder(
+          itemCount: hotContentList.length + 1,
+          itemBuilder: (context, index) {
+            if (index == hotContentList.length) {
+              return _buildLoadMore();
+            } else {
+              return getContentItem(context, index, hotContentList);
+            }
+          },
+          controller: _scrollController,
         ),
       ),
     );

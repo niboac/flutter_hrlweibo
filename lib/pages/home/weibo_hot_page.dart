@@ -23,51 +23,31 @@ class _WeiBoHotPageState extends State<WeiBoHotPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: 0.5,
-            color: Color(0xffBECBC2),
+    return Column(
+      children: <Widget>[
+        TabBar(
+            isScrollable: true,
+            indicatorColor: Color(0xffffffff),
+            labelColor: Color(0xffFF3700),
+            unselectedLabelColor: Color(0xff666666),
+            labelStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+            unselectedLabelStyle: TextStyle(fontSize: 16.0),
+            indicatorSize: TabBarIndicatorSize.label,
+            controller: _controller,
+            tabs: _tabValues
+                .map((e) => Tab(
+                      text: e,
+                    ))
+                .toList()),
+        Expanded(
+          child: TabBarView(
+            controller: _controller,
+            children: [1, 2, 3, 4, 5, 10]
+                .map((e) => WeiBoHomeListPager(mCatId: e.toString()))
+                .toList(),
           ),
-          Stack(
-            children: <Widget>[
-              Container(
-                height: 45,
-                color: Color(0xffffffff),
-                alignment: Alignment.center,
-                child: TabBar(
-                    isScrollable: true,
-                    indicatorColor: Color(0xffffffff),
-                    labelColor: Color(0xffFF3700),
-                    unselectedLabelColor: Color(0xff666666),
-                    labelStyle:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
-                    unselectedLabelStyle: TextStyle(fontSize: 16.0),
-                    indicatorSize: TabBarIndicatorSize.label,
-                    controller: _controller,
-                    tabs: _tabValues
-                        .map((e) => Tab(
-                              text: e,
-                            ))
-                        .toList()),
-              ),
-            ],
-          ),
-          Container(
-            height: 0.5,
-            color: Color(0xffBECBC2),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _controller,
-              children: [1, 2, 3, 4, 5, 10]
-                  .map((e) => WeiBoHomeListPager(mCatId: e.toString()))
-                  .toList(),
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }
