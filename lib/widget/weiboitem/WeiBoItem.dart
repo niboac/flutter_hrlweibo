@@ -32,40 +32,40 @@ class WeiBoItemWidget extends StatelessWidget {
 //整个item布局
 Widget _wholeItemWidget(
     BuildContext context, WeiBoModel weiboItem, bool isDetail) {
-  return Container(
-    color: Colors.white,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        _authorRow(context, weiboItem),
-        textContent(weiboItem.content, context, isDetail),
-        mVideoLayout(context, weiboItem.videourl),
-        _NineGrid(context, weiboItem.picurl),
-        _RetWeetLayout(context, weiboItem, isDetail),
-        Visibility(
-          visible: !isDetail,
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                    bottom: 10,
-                    top: weiboItem.containZf ? 0 : 12),
-                height: 1,
-                color: Color(0xffDBDBDB),
-              ), //下划线
-              _RePraCom(context, weiboItem),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                height: 12,
-                color: Color(0xffEFEFEF),
-              ),
-            ],
-          ),
-        ) //下划线
-      ],
-    ),
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Container(
+        height: 5,
+        color: Color(0xfff4f4f4),
+      ),
+      _authorRow(context, weiboItem),
+      textContent(weiboItem.content, context, isDetail),
+      mVideoLayout(context, weiboItem.videourl),
+      _NineGrid(context, weiboItem.picurl),
+      Offstage(
+        offstage: !isDetail,
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(
+                  left: 15,
+                  right: 15,
+                  bottom: 10,
+                  top: weiboItem.containZf ? 0 : 12),
+              height: 1,
+              color: Color(0xffDBDBDB),
+            ),
+            _RePraCom(context, weiboItem),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              height: 12,
+              color: Color(0xffEFEFEF),
+            ),
+          ],
+        ),
+      )
+    ],
   );
 }
 
@@ -315,43 +315,6 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
               }),
         ],
       ));
-}
-
-//转发内容的布局
-Widget _RetWeetLayout(
-    BuildContext context, WeiBoModel weiboItem, bool isDetail) {
-  if (weiboItem.containZf) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-      child: Container(
-          padding: EdgeInsets.only(bottom: 12),
-          margin: EdgeInsets.only(top: 5),
-          color: Color(0xffF7F7F7),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              textContent(
-                  '[@' +
-                      weiboItem.zfNick +
-                      ':' +
-                      weiboItem.zfUserId +
-                      ']' +
-                      ":" +
-                      weiboItem.zfContent,
-                  context,
-                  isDetail),
-              /*   Text(,
-                    style: TextStyle(color: Colors.black, fontSize: 12)),*/
-              mVideoLayout(context, weiboItem.zfVideoUrl),
-              _NineGrid(context, weiboItem.zfPicurl),
-            ],
-          )),
-    );
-  } else {
-    return Container(
-      height: 0,
-    );
-  }
 }
 
 //转发收藏点赞布局
