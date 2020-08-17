@@ -56,7 +56,7 @@ class Routes {
   static Future navigateTo(BuildContext context, String path,
       {Map<String, dynamic> params,
       bool clearStack = false,
-      TransitionType transition = TransitionType.fadeIn}) {
+      TransitionType transition = TransitionType.inFromRight}) {
     String query = "";
     if (params != null) {
       int index = 0;

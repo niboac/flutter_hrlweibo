@@ -20,9 +20,9 @@ class WeiBoHomeListPager extends StatefulWidget {
 
 class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
     with AutomaticKeepAliveClientMixin {
-  bool isRefreshloading = false;
-  bool isloadingMore = false; //是否显示加载中
-  bool ishasMore = true; //是否还有更多
+  bool isLoading = false;
+  bool isLoadingMore = false; //是否显示加载中
+  bool isHasMore = true; //是否还有更多
   num mCurPage = 1;
   ScrollController _scrollController = new ScrollController();
   List<WeiBoModel> hotContentList = [];
@@ -40,17 +40,17 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         print("调用加载更多");
-        if (!isloadingMore) {
-          if (ishasMore) {
+        if (!isLoadingMore) {
+          if (isHasMore) {
             setState(() {
-              isloadingMore = true;
+              isLoadingMore = true;
               mCurPage += 1;
             });
             getSubDataLoadMore(mCurPage);
           } else {
             print('没有更多数据');
             setState(() {
-              ishasMore = false;
+              isHasMore = false;
             });
           }
         }
@@ -66,8 +66,8 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
   }
 
   Future getSubDataRefresh() async {
-    isloadingMore = false;
-    ishasMore = true;
+    isLoadingMore = false;
+    isHasMore = true;
     mCurPage = 1;
 
     FormData formData = FormData.fromMap({
@@ -82,13 +82,13 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
       hotContentList.clear();
       hotContentList.addAll(category.data.list);
       setState(() {
-        isRefreshloading = false;
+        isLoading = false;
       });
     }, (error) {
       print("接口异常：" + error);
       //  ToastUtil.show(error);
       setState(() {
-        isRefreshloading = false;
+        isLoading = false;
       });
     });
   }
@@ -106,19 +106,19 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
       mListRecords = category.data.list;
       setState(() {
         hotContentList.addAll(mListRecords);
-        isloadingMore = false;
-        ishasMore = mListRecords.length >= Constant.PAGE_SIZE;
+        isLoadingMore = false;
+        isHasMore = mListRecords.length >= Constant.PAGE_SIZE;
       });
     }, (error) {
       setState(() {
-        isloadingMore = false;
-        ishasMore = false;
+        isLoadingMore = false;
+        isHasMore = false;
       });
     });
   }
 
   Widget _buildLoadMore() {
-    return isloadingMore
+    return isLoadingMore
         ? Container(
             child: Padding(
             padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -141,7 +141,7 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
             )),
           ))
         : Container(
-            child: ishasMore
+            child: isHasMore
                 ? Container()
                 : Center(
                     child: Container(
@@ -162,7 +162,7 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
   @override
   Widget build(BuildContext context) {
     return LoadingContainer(
-      isLoading: isRefreshloading,
+      isLoading: isLoading,
       child: RefreshIndicator(
         onRefresh: getSubDataRefresh,
         child: ListView.builder(

@@ -265,17 +265,15 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
               },
               onTap: (String content, String contentId) async {
                 print("id是:" + contentId.toString());
-                Routes.navigateTo(
-                  context,
-                  Routes.topicDetailPage,
-                  params: {
-                    'mTitle': content.replaceAll("#", ""),
-                    'mImg': "",
-                    'mReadCount': "123",
-                    'mDiscussCount': "456",
-                    'mHost': "测试号",
-                  },
-                );
+                Routes.navigateTo(context, Routes.topicDetailPage,
+                    params: {
+                      'mTitle': content.replaceAll("#", ""),
+                      'mImg': "",
+                      'mReadCount': "123",
+                      'mDiscussCount': "456",
+                      'mHost': "测试号",
+                    },
+                    transition: TransitionType.fadeIn);
               }),
           MatchText(
             pattern: '(\\[/).*?(\\])',
