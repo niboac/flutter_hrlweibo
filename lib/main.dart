@@ -29,13 +29,11 @@ class MyApp extends StatelessWidget {
     Routes.configureRoutes(router);
     Routes.router = router;
 
-    return Container(
-      child: MaterialApp(
-          title: "世游会",
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(primaryColor: Colors.white),
-          onGenerateRoute: Routes.router.generator,
-          home: SplashPage()),
-    );
+    return MaterialApp(
+        title: "世游会",
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.white),
+        onGenerateRoute: Routes.router.generator,
+        home: SplashPage());
   }
 }

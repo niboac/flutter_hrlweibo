@@ -57,12 +57,12 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
       BottomNavigationBarItem(
         icon: Icon(IconFont.icon_quanzi),
         title: Text(appBarTitles[1]),
-        activeIcon: Icon(IconFont.icon_quanzi2),
+        activeIcon: IconAnimate(Icon(IconFont.icon_quanzi2)),
       ),
       BottomNavigationBarItem(
         icon: Icon(IconFont.icon_user),
         title: Text(appBarTitles[2]),
-        activeIcon: Icon(IconFont.icon_youxi),
+        activeIcon: IconAnimate(Icon(IconFont.icon_youxi)),
       ),
     ];
 
@@ -104,5 +104,40 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
         },
       ),
     );
+  }
+}
+
+class IconAnimate extends StatefulWidget {
+  _IconAnimateState createState() => new _IconAnimateState();
+  Widget child;
+  IconAnimate(this.child);
+}
+
+class _IconAnimateState extends State<IconAnimate>
+    with TickerProviderStateMixin {
+  Animation animation;
+  AnimationController controller;
+  initState() {
+    super.initState();
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    final CurvedAnimation curve =
+        new CurvedAnimation(parent: controller, curve: Curves.ease);
+    animation = new Tween(begin: 0.1, end: 0.9).animate(curve);
+    controller.forward();
+  }
+
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation: animation,
+        builder: (BuildContext context, Widget _child) {
+          print(animation.value);
+          return Opacity(opacity: animation.value, child: widget.child);
+        });
+  }
+
+  dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
