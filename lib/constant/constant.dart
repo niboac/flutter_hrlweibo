@@ -21,7 +21,8 @@ class Constant {
   static const COLOR_WARN = Color(0xFFF59A23);
   static const COLOR_ERROR = Color(0xFFFA3651);
   static const COLOR_PRIMARY = Color(0xFFA33028);
-  static const COLOR_LINK = Color(0xCC61ADF3);
+  static const COLOR_LINK = Color(0xff5091cA);
+  static const COLOR_TOPIC = Color(0xff5081CA);
 
   static final EventBus eventBus = new EventBus();
 }

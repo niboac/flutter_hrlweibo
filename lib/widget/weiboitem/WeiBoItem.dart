@@ -221,15 +221,17 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
         text: mTextContent,
         style: TextStyle(
           height: 1.5,
-          fontSize: 15,
+          fontSize: 17,
           color: Colors.black,
+          fontWeight: FontWeight.w400,
         ),
         parse: <MatchText>[
           MatchText(
               pattern: r"\[(@[^:]+):([^\]]+)\]",
               style: TextStyle(
-                color: Color(0xff5B778D),
-                fontSize: 15,
+                color: Constant.COLOR_TOPIC,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
               renderText: ({String str, String pattern}) {
                 Map<String, String> map = Map<String, String>();
@@ -247,9 +249,9 @@ Widget textContent(String mTextContent, BuildContext context, bool isDetail) {
           MatchText(
               pattern: '#.*?#',
               style: TextStyle(
-                color: Color(0xff5B778D),
-                fontSize: 15,
-              ),
+                  color: Constant.COLOR_TOPIC,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
               renderText: ({String str, String pattern}) {
                 Map<String, String> map = Map<String, String>();
 

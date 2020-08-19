@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hrlweibo/pages/find_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:math';
 
 import '../widget/iconfont.dart';
 import 'home_page.dart';
@@ -42,17 +43,18 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
       BottomNavigationBarItem(
         icon: Icon(IconFont.icon_home),
         title: Text(appBarTitles[0]),
-        activeIcon: Lottie.asset(
-          'assets/lottie/star-smash.json',
-          onLoaded: (composition) {
-            _controller.duration = composition.duration;
-            _controller.animateTo(10);
-          },
-          width: 20,
-          height: 25,
-          repeat: false,
-          fit: BoxFit.fill,
-        ),
+        activeIcon: IconAnimate(Icon(IconFont.icon_home2)),
+//          Lottie.asset(
+//            'assets/lottie/star-smash.json',
+//            onLoaded: (composition) {
+//              _controller.duration = composition.duration;
+//              _controller.animateTo(10);
+//            },
+//            width: 20,
+//            height: 25,
+//            repeat: false,
+//            fit: BoxFit.fill,
+//          )
       ),
       BottomNavigationBarItem(
         icon: Icon(IconFont.icon_quanzi),
@@ -116,14 +118,17 @@ class IconAnimate extends StatefulWidget {
 class _IconAnimateState extends State<IconAnimate>
     with TickerProviderStateMixin {
   Animation animation;
+  Animation _animation;
   AnimationController controller;
   initState() {
     super.initState();
     controller = new AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
+        duration: const Duration(milliseconds: 500), vsync: this);
     final CurvedAnimation curve =
         new CurvedAnimation(parent: controller, curve: Curves.ease);
-    animation = new Tween(begin: 0.1, end: 0.9).animate(curve);
+    animation = new Tween(begin: 0.1, end: 0.99).animate(curve);
+    _animation = Tween(begin: .4, end: .0).animate(curve);
+
     controller.forward();
   }
 
@@ -131,8 +136,9 @@ class _IconAnimateState extends State<IconAnimate>
     return AnimatedBuilder(
         animation: animation,
         builder: (BuildContext context, Widget _child) {
-          print(animation.value);
-          return Opacity(opacity: animation.value, child: widget.child);
+          return RotationTransition(
+              turns: _animation,
+              child: Opacity(opacity: animation.value, child: widget.child));
         });
   }
 
