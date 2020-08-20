@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hrlweibo/model/OtherUserModel.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:flutter_hrlweibo/widget/animation/IconAnimate.dart';
 
 class PersonInfoPage extends StatefulWidget {
   String mOtherUserId;
@@ -37,7 +38,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
   @override
   void initState() {
     super.initState();
-    fetchData();
     _tabController = TabController(vsync: this, initialIndex: 0, length: 2);
   }
 
@@ -58,17 +58,6 @@ class _PersonInfoPageState extends State<PersonInfoPage>
         isShowBlackTitle = false;
       });
     }
-  }
-
-  Future<void> fetchData() async {
-    FormData params = FormData.fromMap({
-      'muserId': UserUtil.getUserInfo().id,
-      'otheruserId': widget.mOtherUserId,
-    });
-    DioManager.getInstance().post(ServiceUrl.getUserInfo, params, (data) {
-      mUser = OtherUser.fromJson(data['data']);
-      setState(() {});
-    }, (error) {});
   }
 
   /**
@@ -403,14 +392,14 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                                             Expanded(
                                               child: Container(
                                                 alignment: Alignment.center,
-                                                child: new CircleAvatar(
+                                                child: IconAnimate(CircleAvatar(
                                                   backgroundImage:
                                                       new NetworkImage(
                                                           mUser.headurl == null
                                                               ? ""
                                                               : mUser.headurl),
                                                   radius: 33.0,
-                                                ),
+                                                )),
                                               ),
                                             ),
                                           ],

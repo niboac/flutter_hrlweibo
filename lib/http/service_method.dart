@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'dart:io';
+import 'dart:convert' show JSON, JsonEncoder;
 
 import 'package:dio/dio.dart';
+import 'package:flutter_hrlweibo/constant/constant.dart';
 import 'package:flutter_hrlweibo/public.dart';
 
 class DioManager {
@@ -55,6 +57,13 @@ class DioManager {
           response = await dio.post(url);
         }
       }
+      if (Constant.ISDEBUG) {
+        print("\n================== 响应数据 ==========================");
+        print("url = ${url}");
+        print("code = ${response.statusCode}");
+        print(new JsonEncoder.withIndent('  ').convert(response.data));
+        print("\n");
+      }
     } on DioError catch (error) {
       // 请求错误处理
       Response errorResponse;
@@ -69,25 +78,6 @@ class DioManager {
       }
       _error(errorCallBack, error.message);
       return '';
-    }
-    if (Constant.ISDEBUG) {
-      dio.interceptors
-          .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
-        print("\n================== 请求数据 ==========================");
-        print("url = ${options.uri.toString()}");
-        print("headers = ${options.headers}");
-        print("params = ${options.data}");
-      }, onResponse: (Response response) {
-        print("\n================== 响应数据 ==========================");
-        print("code = ${response.statusCode}");
-        print("data = ${response.data}");
-        print("\n");
-      }, onError: (DioError e) {
-        print("\n================== 错误响应数据 ======================");
-        print("type = ${e.type}");
-        print("message = ${e.message}");
-        print("\n");
-      }));
     }
 
     String dataStr = json.encode(response.data);

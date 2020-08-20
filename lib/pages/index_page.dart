@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hrlweibo/pages/find_page.dart';
+import 'package:flutter_hrlweibo/pages/video_page.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:flutter_hrlweibo/widget/animation/IconAnimate.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:math';
 
 import '../widget/iconfont.dart';
 import 'home_page.dart';
@@ -21,7 +22,7 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
   var currentPage;
   DateTime lastPopTime;
 
-  final List<Widget> tabBodies = [HomePage(), FindPage(), MinePage()];
+  final List<Widget> tabBodies = [HomePage(), VideoPage(), MinePage()];
 
   AnimationController _controller;
 
@@ -87,10 +88,7 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
               });
             },
           ),
-          body: IndexedStack(
-            index: _tabIndex,
-            children: tabBodies,
-          ),
+          body: tabBodies[_tabIndex],
         ),
         onWillPop: () {
           // 点击返回键的操作
@@ -106,44 +104,5 @@ class _IndexPageState extends State<IndexPage> with TickerProviderStateMixin {
         },
       ),
     );
-  }
-}
-
-class IconAnimate extends StatefulWidget {
-  _IconAnimateState createState() => new _IconAnimateState();
-  Widget child;
-  IconAnimate(this.child);
-}
-
-class _IconAnimateState extends State<IconAnimate>
-    with TickerProviderStateMixin {
-  Animation animation;
-  Animation _animation;
-  AnimationController controller;
-  initState() {
-    super.initState();
-    controller = new AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this);
-    final CurvedAnimation curve =
-        new CurvedAnimation(parent: controller, curve: Curves.ease);
-    animation = new Tween(begin: 0.1, end: 0.99).animate(curve);
-    _animation = Tween(begin: .4, end: .0).animate(curve);
-
-    controller.forward();
-  }
-
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: animation,
-        builder: (BuildContext context, Widget _child) {
-          return RotationTransition(
-              turns: _animation,
-              child: Opacity(opacity: animation.value, child: widget.child));
-        });
-  }
-
-  dispose() {
-    controller.dispose();
-    super.dispose();
   }
 }

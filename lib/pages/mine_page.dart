@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_hrlweibo/public.dart';
+import 'package:flutter_hrlweibo/widget/animation/IconAnimate.dart';
+import 'package:flutter_hrlweibo/widget/animation/RunningNumber.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class _MinePageState extends State<MinePage> {
   @override
   void initState() {
     super.initState();
+    print('我的页面,init');
     if (UserUtil.isLogin()) {
       FormData params = FormData.fromMap({
         'muserId': UserUtil.getUserInfo().id,
@@ -28,19 +31,6 @@ class _MinePageState extends State<MinePage> {
   void deactivate() {
     super.deactivate();
     var isTopRoute = ModalRoute.of(context).isCurrent;
-    if (isTopRoute) {
-      if (UserUtil.isLogin()) {
-        FormData params = FormData.fromMap({
-          'muserId': UserUtil.getUserInfo().id,
-          'otheruserId': UserUtil.getUserInfo().id,
-        });
-        DioManager.getInstance().post(ServiceUrl.getUserInfo, params, (data) {
-          UserUtil.saveUserInfo(data['data']);
-          SchedulerBinding.instance
-              .addPostFrameCallback((_) => setState(() {}));
-        }, (error) {});
-      }
-    }
   }
 
   @override
@@ -69,7 +59,7 @@ class _MinePageState extends State<MinePage> {
             UserUtil.getUserInfo().headurl == null)
         ? AssetImage(Constant.ASSETS_IMG + 'ic_avatar_default.png')
         : NetworkImage(UserUtil.getUserInfo().headurl);
-    return CircleAvatar(radius: 45, backgroundImage: image);
+    return IconAnimate(CircleAvatar(radius: 45, backgroundImage: image));
   }
 
   //我的信息
@@ -229,7 +219,6 @@ class _MinePageState extends State<MinePage> {
   //更多功能
   Widget _buildMoreActions() {
     return Container(
-        //padding: EdgeInsets.only(top: 10, bottom: 10),
         margin: EdgeInsets.only(top: 10),
         color: Colors.white,
         child: Column(
