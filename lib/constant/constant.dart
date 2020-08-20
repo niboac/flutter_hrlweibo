@@ -1,5 +1,6 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class Constant {
   //  static const baseUrl ='http://192.168.56.1:8080/hrlweibo/';
@@ -20,9 +21,21 @@ class Constant {
   static const COLOR_MUTE = Color(0xccccccff);
   static const COLOR_WARN = Color(0xFFF59A23);
   static const COLOR_ERROR = Color(0xFFFA3651);
-  static const COLOR_PRIMARY = Color(0xFFA33028);
+  static const COLOR_PRIMARY = Color(0xFFFC6061);
   static const COLOR_LINK = Color(0xff5091cA);
   static const COLOR_TOPIC = Color(0xff5081CA);
+
+  static var BORDER_RADIUS_BOX = BoxDecoration(
+    borderRadius: BorderRadius.circular(5),
+    color: Colors.white,
+    boxShadow: [
+      BoxShadow(
+          color: Color(0x55dddddd),
+          offset: Offset(3.0, 3.0),
+          blurRadius: 5.0,
+          spreadRadius: 1.0)
+    ],
+  );
 
   static final EventBus eventBus = new EventBus();
 }

@@ -45,6 +45,7 @@ class _MinePageState extends State<MinePage> {
                 padding: EdgeInsets.only(top: 0),
                 children: <Widget>[
                   _buildMyInfo(),
+                  _bindGame(),
                   _buildMoreActions(),
                   _buildBottom(),
                 ],
@@ -54,12 +55,46 @@ class _MinePageState extends State<MinePage> {
     );
   }
 
+  Widget _bindGame() {
+    return Stack(
+      children: <Widget>[
+        Container(
+          color: Color(0xff3D3B47),
+          height: 53,
+        ),
+        Container(
+          margin: EdgeInsets.fromLTRB(15, 20, 15, 15),
+          padding: EdgeInsets.all(10),
+          decoration: Constant.BORDER_RADIUS_BOX,
+          child: ListTile(
+            title: Text('您有游戏需要绑定'),
+            subtitle: Text('you jige youxi xuyao'),
+            trailing: Container(
+              height: 30,
+              child: RaisedButton(
+                padding: EdgeInsets.fromLTRB(15, 2, 15, 2),
+                color: Constant.COLOR_PRIMARY,
+                textColor: Colors.white,
+                shape: StadiumBorder(),
+                child: Text(
+                  '立即绑定',
+                  style: TextStyle(fontSize: 12),
+                ),
+                onPressed: () {},
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget mHeadWidget() {
     var image = (UserUtil.getUserInfo() == null ||
             UserUtil.getUserInfo().headurl == null)
         ? AssetImage(Constant.ASSETS_IMG + 'ic_avatar_default.png')
         : NetworkImage(UserUtil.getUserInfo().headurl);
-    return IconAnimate(CircleAvatar(radius: 45, backgroundImage: image));
+    return IconAnimate(CircleAvatar(radius: 55, backgroundImage: image));
   }
 
   //我的信息
@@ -75,31 +110,26 @@ class _MinePageState extends State<MinePage> {
               child: Row(
                 children: <Widget>[
                   Container(
-                      width: 50,
-                      height: 50,
+                      width: 60,
+                      height: 60,
                       margin: EdgeInsets.only(left: 20, right: 15),
-                      child: UserUtil.getUserInfo().isvertify == 0
-                          ? mHeadWidget
-                          : Stack(
-                              children: <Widget>[
-                                mHeadWidget(),
-                                Positioned(
-                                  right: 0,
-                                  bottom: 0,
-                                  child: Container(
-                                    child: Image.asset(
-                                      (UserUtil.getUserInfo().isvertify == 1)
-                                          ? Constant.ASSETS_IMG +
-                                              'home_vertify.webp'
-                                          : Constant.ASSETS_IMG +
-                                              'home_vertify2.webp',
-                                      width: 16.0,
-                                      height: 16.0,
-                                    ),
-                                  ),
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children: <Widget>[
+                          mHeadWidget(),
+                          UserUtil.getUserInfo().isvertify == 0
+                              ? null
+                              : Image.asset(
+                                  (UserUtil.getUserInfo().isvertify == 1)
+                                      ? Constant.ASSETS_IMG +
+                                          'home_vertify.webp'
+                                      : Constant.ASSETS_IMG +
+                                          'home_vertify2.webp',
+                                  width: 16.0,
+                                  height: 16.0,
                                 ),
-                              ],
-                            )),
+                        ],
+                      )),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -133,7 +163,7 @@ class _MinePageState extends State<MinePage> {
             ),
           ),
           Container(
-            height: 15,
+            height: 35,
           ),
           Row(
             children: <Widget>[
