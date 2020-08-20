@@ -141,8 +141,8 @@ class _MinePageState extends State<MinePage> {
                 child: InkWell(
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        '153',
+                      RunningNumber(
+                        1534,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -164,8 +164,8 @@ class _MinePageState extends State<MinePage> {
                 child: InkWell(
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        UserUtil.getUserInfo().followCount,
+                      RunningNumber(
+                        int.parse(UserUtil.getUserInfo().followCount),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -189,8 +189,8 @@ class _MinePageState extends State<MinePage> {
                 child: InkWell(
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        UserUtil.getUserInfo().fanCount,
+                      RunningNumber(
+                        int.parse(UserUtil.getUserInfo().fanCount),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
